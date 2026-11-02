@@ -118,7 +118,7 @@ tools/       exportar_para_lab.py, gen_reference.py, capturas.py, gerar_og.py
 ```
 
 ## Créditos e licença
-Epitácio Vicente do Nascimento Neto e Antonio Clerton Santana de Araujo, Programa de Pós-Graduação em Computação Aplicada (PPGCA), Unisinos. Disciplina Aprendizado por Reforço 2026/2, Prof. Gabriel de Oliveira Ramos. Código sob licença [MIT](LICENSE). Como citar: [CITATION.cff](CITATION.cff).
+Epitácio Vicente do Nascimento Neto e Antonio Clerton Santana de Araujo, Programa de Pós-Graduação em Computação Aplicada (PPGCA), Unisinos. Disciplina Aprendizado por Reforço 2026/2, Prof. Dr. Gabriel de Oliveira Ramos. Código sob licença [MIT](LICENSE). Como citar: [CITATION.cff](CITATION.cff).
 
 Referências: Sutton e Barto, *Reinforcement Learning: An Introduction* (2018); Raffin et al., Stable-Baselines3 (*JMLR*, 2021); Mnih et al., DQN (*Nature*, 2015); Schulman et al., PPO (arXiv:1707.06347, 2017); Mnih et al., A3C (*ICML*, 2016); Towers et al., Gymnasium (2024).
 
@@ -143,4 +143,4 @@ Referências: Sutton e Barto, *Reinforcement Learning: An Introduction* (2018); 
 
 **Honest reading:** homemade simulator, few seeds (3 in the search, 5 in the final runs), limited step budget, wide confidence intervals and low-power tests: results are indicative. The browser Sarsa uses the same algorithm and features as Python but a different exploration RNG, so curves are statistically equivalent, not identical.
 
-**Credits:** Epitácio Vicente do Nascimento Neto and Antonio Clerton Santana de Araujo, PPGCA/Unisinos; Prof. Gabriel de Oliveira Ramos. License: [MIT](LICENSE). Citation: [CITATION.cff](CITATION.cff).
+**Credits:** Epitácio Vicente do Nascimento Neto and Antonio Clerton Santana de Araujo, PPGCA/Unisinos; Prof. Dr. Gabriel de Oliveira Ramos. License: [MIT](LICENSE). Citation: [CITATION.cff](CITATION.cff).
