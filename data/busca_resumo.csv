@@ -1,0 +1,25 @@
+algo,config,n,ret_desc,ret_desc_dp,ret_desc_ic95,ret,sucesso,passos_ep,toca_destrocos,tempo_s,posicao,escolhida,hp
+A2C,a2c_16envs,3,-23.757725,1.549051,3.848367,-49.546667,0.0,100.0,0.32,56.333333,1,1,"{""n_envs"": 16, ""n_steps"": 16, ""learning_rate"": 0.001, ""ent_coef"": 0.05, ""gae_lambda"": 0.95, ""escala_recompensa"": 0.1}"
+A2C,a2c_8envs_ent0.1,3,-35.731127,23.963018,59.532242,-66.666667,0.0,100.0,0.0,88.633333,3,0,"{""n_envs"": 8, ""n_steps"": 16, ""learning_rate"": 0.001, ""ent_coef"": 0.1, ""gae_lambda"": 0.95, ""escala_recompensa"": 0.1}"
+A2C,a2c_8envs_n16,3,-35.555842,24.111169,59.900299,-66.666667,0.0,100.0,0.0,90.6,2,0,"{""n_envs"": 8, ""n_steps"": 16, ""learning_rate"": 0.001, ""ent_coef"": 0.05, ""gae_lambda"": 0.95, ""escala_recompensa"": 0.1}"
+A2C,a2c_8envs_n32,3,-37.610299,15.511764,38.536469,-63.833333,0.0,100.0,0.0,71.566667,4,0,"{""n_envs"": 8, ""n_steps"": 32, ""learning_rate"": 0.001, ""ent_coef"": 0.05, ""gae_lambda"": 0.95, ""escala_recompensa"": 0.1}"
+A2C,a2c_padrao,3,-63.396766,0.0,0.0,-100.0,0.0,100.0,0.0,519.833333,6,0,{}
+A2C,a2c_vf1.0_lr5e-4,3,-50.481867,22.369261,55.572809,-83.106667,0.0,100.0,0.16,72.966667,5,0,"{""n_envs"": 8, ""n_steps"": 16, ""learning_rate"": 0.0005, ""ent_coef"": 0.05, ""gae_lambda"": 0.95, ""escala_recompensa"": 0.1, ""vf_coef"": 1.0}"
+DQN,dqn_expl0.2_eps0.1,3,36.982456,88.889855,220.832464,43.543333,0.333333,81.03,0.656667,350.9,3,0,"{""learning_rate"": 0.001, ""buffer_size"": 100000, ""learning_starts"": 1000, ""exploration_fraction"": 0.2, ""target_update_interval"": 500, ""batch_size"": 64, ""escala_recompensa"": 0.1, ""exploration_final_eps"": 0.1}"
+DQN,dqn_gamma0.95,3,43.346998,58.693966,145.815664,56.803333,0.333333,84.613333,0.616667,347.2,1,1,"{""learning_rate"": 0.001, ""buffer_size"": 100000, ""learning_starts"": 1000, ""exploration_fraction"": 0.4, ""target_update_interval"": 500, ""batch_size"": 64, ""escala_recompensa"": 0.1, ""gamma"": 0.95}"
+DQN,dqn_lr1e-3_expl0.4,3,43.109081,87.099681,216.385065,47.44,0.333333,80.163333,0.636667,354.1,2,0,"{""learning_rate"": 0.001, ""buffer_size"": 100000, ""learning_starts"": 1000, ""exploration_fraction"": 0.4, ""target_update_interval"": 500, ""batch_size"": 64, ""escala_recompensa"": 0.1}"
+DQN,dqn_lr5e-4_rede128,3,-42.139279,46.330394,115.100369,-73.056667,0.0,100.0,0.633333,385.966667,5,0,"{""learning_rate"": 0.0005, ""buffer_size"": 100000, ""learning_starts"": 1000, ""exploration_fraction"": 0.4, ""target_update_interval"": 1000, ""batch_size"": 64, ""escala_recompensa"": 0.1, ""net_arch"": [128, 128]}"
+DQN,dqn_padrao,3,-66.361582,5.135212,12.757604,-103.06,0.0,100.0,0.333333,363.533333,6,0,{}
+DQN,dqn_sem_escala,3,-36.080949,23.658864,58.77662,-66.666667,0.0,100.0,0.0,339.0,4,0,"{""learning_rate"": 0.001, ""buffer_size"": 100000, ""learning_starts"": 1000, ""exploration_fraction"": 0.4, ""target_update_interval"": 500, ""batch_size"": 64, ""escala_recompensa"": 1.0}"
+PPO,ppo_8envs,3,-14.106066,18.74436,46.567329,-38.593333,0.0,100.0,0.306667,184.966667,4,0,"{""learning_rate"": 0.001, ""n_steps"": 64, ""batch_size"": 128, ""ent_coef"": 0.05, ""escala_recompensa"": 0.1, ""n_envs"": 8}"
+PPO,ppo_clip0.3,3,50.166639,99.224731,246.50779,74.483333,0.556667,72.983333,0.3,339.066667,1,1,"{""learning_rate"": 0.001, ""n_steps"": 512, ""batch_size"": 128, ""ent_coef"": 0.05, ""escala_recompensa"": 0.1, ""clip_range"": 0.3}"
+PPO,ppo_gamma0.95,3,-23.646172,2.863152,7.113038,-51.666667,0.0,100.0,0.0,355.4,5,0,"{""learning_rate"": 0.001, ""n_steps"": 512, ""batch_size"": 128, ""ent_coef"": 0.05, ""escala_recompensa"": 0.1, ""gamma"": 0.95}"
+PPO,ppo_lr1e-3_ent0.05,3,31.256016,76.783421,190.755987,31.89,0.28,83.87,0.526667,373.833333,2,0,"{""learning_rate"": 0.001, ""n_steps"": 512, ""batch_size"": 128, ""ent_coef"": 0.05, ""escala_recompensa"": 0.1}"
+PPO,ppo_lr3e-4_ent0.01,3,5.037218,87.111373,216.414113,5.946667,0.303333,87.886667,0.0,441.166667,3,0,"{""learning_rate"": 0.0003, ""n_steps"": 512, ""batch_size"": 64, ""ent_coef"": 0.01, ""escala_recompensa"": 0.1}"
+PPO,ppo_padrao,3,-63.396766,0.0,0.0,-100.0,0.0,100.0,0.0,510.733333,6,0,{}
+SARSA,sarsa_12x12x4_a0.1,3,-32.531585,0.944448,2.346327,-58.063333,0.0,100.0,0.366667,41.3,6,0,"{""n_tiles"": [12, 12, 4], ""n_til"": 8, ""alpha"": 0.1}"
+SARSA,sarsa_12x12x4_a0.3,3,7.83393,4.358205,10.827256,-0.376667,0.056667,99.04,0.313333,41.166667,4,0,"{""n_tiles"": [12, 12, 4], ""n_til"": 8, ""alpha"": 0.3}"
+SARSA,sarsa_6x6x3_a0.3,3,114.180654,2.611199,6.487102,179.513333,1.0,51.466667,0.99,39.633333,1,1,"{""n_tiles"": [6, 6, 3], ""n_til"": 8, ""alpha"": 0.3}"
+SARSA,sarsa_8x8x3_a0.1,3,-4.002837,7.083704,17.598318,-18.28,0.02,99.66,0.25,42.266667,5,0,"{""n_tiles"": [8, 8, 3], ""n_til"": 8, ""alpha"": 0.1}"
+SARSA,sarsa_8x8x3_a0.3,3,114.159759,1.059669,2.632576,182.22,1.0,54.16,0.956667,40.066667,2,0,"{""n_tiles"": [8, 8, 3], ""n_til"": 8, ""alpha"": 0.3}"
+SARSA,sarsa_8x8x3_eps0.5,3,110.270212,3.827553,9.508937,178.76,0.993333,55.806667,0.963333,31.866667,3,0,"{""n_tiles"": [8, 8, 3], ""n_til"": 8, ""alpha"": 0.3, ""eps0"": 0.5, ""eps1"": 0.05}"

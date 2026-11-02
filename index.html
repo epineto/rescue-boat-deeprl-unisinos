@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Laboratório de Aprendizado por Reforço: barco de resgate contínuo</title>
+<meta name="description" content="Laboratório interativo de Aprendizado por Reforço: controle o barco de resgate em um mapa contínuo, assista a DQN, PPO, A2C e Sarsa, treine o Sarsa com tile coding no navegador e explore todas as configurações do experimento. Trabalho 3, PPGCA/Unisinos.">
+<meta name="theme-color" content="#1D2369">
+<meta name="author" content="Epitácio Vicente do Nascimento Neto">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icon-192.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Laboratório de Aprendizado por Reforço · Unisinos">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:title" content="Laboratório de Aprendizado por Reforço: barco de resgate contínuo">
+<meta property="og:description" content="Controle o barco, assista a DQN, PPO, A2C e Sarsa lado a lado, treine o Sarsa com tile coding e explore os resultados, direto no navegador.">
+<meta property="og:url" content="https://epineto.github.io/rescue-boat-deeprl-unisinos/">
+<meta property="og:image" content="https://epineto.github.io/rescue-boat-deeprl-unisinos/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Mapa 6 por 6 do barco de resgate com a trajetória de um episódio">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="style.css">
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+<a class="pular" href="#conteudo" data-i18n="pular">Pular para o conteúdo</a>
+
+<header class="cab">
+  <div class="cab-in">
+    <img class="logo" src="assets/logo_unisinos.png" alt="Unisinos" data-i18n-attr="alt:cab.logo" width="133" height="34">
+    <div class="titulos">
+      <p class="cab-t" data-i18n="cab.titulo">Laboratório de Aprendizado por Reforço</p>
+      <p class="cab-s" data-i18n="cab.sub">Barco de resgate com estados contínuos · Trabalho 3 · PPGCA/Unisinos</p>
+    </div>
+    <button type="button" id="tema-btn" class="tema-btn" aria-pressed="false" data-i18n-attr="aria-label:tema.alternar;title:tema.alternar" aria-label="Alternar entre tema claro e escuro" title="Alternar entre tema claro e escuro">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path class="ic-lua" d="M20 14.5A8 8 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" fill="currentColor"/><g class="ic-sol" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4" fill="currentColor"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></g></svg>
+    </button>
+    <div class="idioma" role="group" aria-label="Idioma" data-i18n-attr="aria-label:lang.grupo">
+      <button type="button" data-lang-btn="pt" lang="pt-BR" aria-pressed="true" title="Português (Brasil)">PT</button>
+      <button type="button" data-lang-btn="en" lang="en" aria-pressed="false" title="English">EN</button>
+    </div>
+  </div>
+</header>
+
+<nav class="nav" aria-label="Seções" data-i18n-attr="aria-label:nav.aria">
+  <ul class="nav-in">
+    <li><a href="#intro" data-i18n="nav.intro">Início</a></li>
+    <li><a href="#ambiente" data-i18n="nav.ambiente">Ambiente</a></li>
+    <li><a href="#politicas" data-i18n="nav.politicas">Políticas</a></li>
+    <li><a href="#treinar" data-i18n="nav.treinar">Treinar</a></li>
+    <li><a href="#resultados" data-i18n="nav.resultados">Resultados</a></li>
+    <li><a href="#sobre" data-i18n="nav.sobre">Sobre</a></li>
+  </ul>
+</nav>
+
+<main id="conteudo" tabindex="-1">
+<noscript><p class="aviso">Este laboratório precisa de JavaScript e de um servidor HTTP (ver README).</p></noscript>
+<p id="erro-carga" class="aviso" role="alert" hidden></p>
+<p id="aviso-prov" class="aviso aviso-prov" role="note" hidden></p>
+
+<!-- ============================ INÍCIO ============================ -->
+<section id="intro" class="sec" aria-labelledby="intro-t">
+  <div class="hero"><div class="hero-in"><div>
+    <img class="hero-logo" src="assets/logo_unisinos.png" alt="Unisinos" data-i18n-attr="alt:cab.logo" width="200" height="51">
+    <h2 id="intro-t" data-i18n="intro.titulo">Barco de resgate com estados contínuos: da tabela à aproximação de função</h2>
+    <ul class="problema">
+      <li data-i18n-html="intro.p1">O cenário do Trabalho 2 (abrigo H, três pessoas ilhadas, barco de capacidade 2, correnteza na linha 2, destroços logo abaixo e quatro blocos) ganhou <strong>posição contínua</strong>, <strong>ruído de movimento</strong> e uma <strong>correnteza dinâmica</strong>, cuja intensidade varia no tempo e é observável.</li>
+      <li data-i18n-html="intro.p2">Com estados contínuos, a tabela de valores deixa de caber: é preciso <strong>aproximar funções</strong>, com redes neurais (DQN, PPO e A2C, do stable-baselines3) e com um modelo linear sobre <em>tile coding</em> (Sarsa semi-gradiente, implementado à mão).</li>
+      <li data-i18n-html="intro.p3">Tudo roda no navegador: é possível <strong>controlar</strong> o barco, <strong>assistir</strong> às políticas, <strong>treinar</strong> o Sarsa e <strong>explorar</strong> todas as configurações testadas.</li>
+    </ul>
+  </div><div class="hero-nums" id="hero-nums"></div></div></div>
+
+  <div class="grade2 intro-grade">
+    <div class="cartao">
+      <h3 data-i18n="intro.demo.t">Um episódio em andamento</h3>
+      <div class="mapa-wrap mapa-intro"><canvas id="intro-canvas" role="img" data-i18n-attr="aria-label:intro.demo.aria" aria-label="Mapa 6 por 6 com o barco executando a heurística de caminho mais curto."></canvas></div>
+      <p class="mini" id="intro-demo-leg"></p>
+    </div>
+    <div class="cartao">
+      <h3 data-i18n="intro.mdp.t">O problema em um quadro</h3>
+      <table class="tab tab-txt tab-mdp">
+        <tbody>
+          <tr><th scope="row" data-i18n="intro.mdp.obs">Observação</th><td data-i18n-html="intro.mdp.obs_d"><strong>13 números</strong> em [0, 1]: posição (x, y) normalizada, situação de cada pessoa (ilhada, a bordo, salva), ocupação do barco e intensidade da correnteza. Não há “direção do alvo”.</td></tr>
+          <tr><th scope="row" data-i18n="intro.mdp.acoes">Ações</th><td data-i18n-html="intro.mdp.acoes_d"><strong>4</strong> ações discretas: N, S, L, O. Cada uma desloca o barco 0,7 célula, com ruído gaussiano (σ = 0,05).</td></tr>
+          <tr><th scope="row" data-i18n="intro.mdp.dina">Dinâmica</th><td data-i18n-html="intro.mdp.dina_d">Blocos impedem o movimento; na faixa da correnteza, o barco é arrastado para o sul por <code>0,5·I</code> célula por passo (mais ruído), com <em>I</em> variando como um processo AR(1).</td></tr>
+          <tr><th scope="row" data-i18n="intro.mdp.rec">Recompensas</th><td data-i18n-html="intro.mdp.rec_d">−1 por passo; −10 ao entrar num disco de destroços; +50 por pessoa entregue ao abrigo; +100 ao entregar a última.</td></tr>
+          <tr><th scope="row" data-i18n="intro.mdp.fim">Término</th><td data-i18n-html="intro.mdp.fim_d">As 3 pessoas salvas (sucesso) ou 100 passos (truncamento).</td></tr>
+        </tbody>
+      </table>
+      <h4 data-i18n="intro.par.t">Parâmetros calibrados do ambiente</h4>
+      <dl class="protocolo protocolo-mini" id="intro-params"></dl>
+    </div>
+  </div>
+
+  <div class="cartao">
+    <h3 data-i18n="intro.agentes.t">Quem é comparado</h3>
+    <ul class="agentes-lista" id="intro-agentes"></ul>
+  </div>
+
+  <div class="grade3">
+    <a class="atalho" href="#ambiente"><strong data-i18n="intro.b1.t">Controlar o barco</strong><span data-i18n="intro.b1.d">Setas ou botões N, S, L, O; posição contínua, correnteza, recompensa e a observação de 13 números.</span></a>
+    <a class="atalho" href="#politicas"><strong data-i18n="intro.b2.t">Assistir às políticas</strong><span data-i18n="intro.b2.d">DQN, PPO, A2C, Sarsa e linhas de base lado a lado, com o mesmo ruído, e comparação em N episódios.</span></a>
+    <a class="atalho" href="#treinar"><strong data-i18n="intro.b3.t">Treinar o Sarsa</strong><span data-i18n="intro.b3.d">Tile coding, α, ε e γ ajustáveis; curva de aprendizado ao vivo e a política aprendida em ação.</span></a>
+    <a class="atalho" href="#resultados"><strong data-i18n="intro.b4.t">Explorar os resultados</strong><span data-i18n="intro.b4.d">Todas as configurações da busca, tabela final, curvas com bandas de confiança, hipóteses e o experimento com orçamento maior.</span></a>
+    <a class="atalho" href="#sobre"><strong data-i18n="intro.b5.t">Sobre e limitações</strong><span data-i18n="intro.b5.d">Como rodar, testes, aulas relacionadas, referências e o que o experimento não permite concluir.</span></a>
+  </div>
+
+  <div class="cartao cartao-aviso">
+    <h3 data-i18n="intro.aviso.t">Leitura honesta</h3>
+    <p class="just" data-i18n-html="intro.aviso.d">O simulador é <strong>próprio</strong> (sem validação externa), o número de <strong>sementes é pequeno</strong> (3 na busca, 5 nas execuções finais) e o orçamento de passos é limitado. Os intervalos de confiança são largos e os testes de hipótese têm baixo poder: os resultados são <strong>indicativos</strong>, não definitivos. Detalhes em <a href="#sobre">Sobre</a>.</p>
+  </div>
+</section>
+
+<!-- ============================ AMBIENTE ============================ -->
+<section id="ambiente" class="sec" aria-labelledby="amb-t">
+  <h2 id="amb-t" data-i18n="amb.t">Ambiente: o barco no mapa contínuo</h2>
+  <p class="lead just" data-i18n-html="amb.lead">O barco é controlado com as <kbd>setas</kbd> do teclado (ou as letras <kbd>N</kbd> <kbd>S</kbd> <kbd>L</kbd> <kbd>O</kbd>) ou com os botões. Cada ação desloca 0,7 célula, com ruído; na faixa azul-escura da correnteza, o barco é arrastado para o sul. Embarque e desembarque acontecem por <strong>raio</strong> (círculos tracejados). Objetivo: entregar as 3 pessoas ao abrigo H em até 100 passos.</p>
+
+  <div class="grade-amb">
+    <div class="cartao">
+      <div class="mapa-wrap"><canvas id="amb-canvas" tabindex="0" role="application" data-i18n-attr="aria-label:amb.canvas_aria" aria-label="Mapa 6 por 6 do barco de resgate. Setas do teclado ou letras N, S, L e O movem o barco; R reinicia o episódio."></canvas></div>
+      <div class="dpad" role="group" data-i18n-attr="aria-label:amb.dpad" aria-label="Botões de direção">
+        <button type="button" class="btn dp-n" data-acao="0" data-i18n-attr="aria-label:amb.norte;title:amb.norte_t" aria-label="Norte (para cima)" title="Norte (seta para cima ou tecla N)"><span data-i18n="acao.N">N</span></button>
+        <button type="button" class="btn dp-o" data-acao="3" data-i18n-attr="aria-label:amb.oeste;title:amb.oeste_t" aria-label="Oeste (para a esquerda)" title="Oeste (seta para a esquerda ou tecla O)"><span data-i18n="acao.O">O</span></button>
+        <button type="button" class="btn dp-l" data-acao="2" data-i18n-attr="aria-label:amb.leste;title:amb.leste_t" aria-label="Leste (para a direita)" title="Leste (seta para a direita ou tecla L)"><span data-i18n="acao.L">L</span></button>
+        <button type="button" class="btn dp-s" data-acao="1" data-i18n-attr="aria-label:amb.sul;title:amb.sul_t" aria-label="Sul (para baixo)" title="Sul (seta para baixo ou tecla S)"><span data-i18n="acao.S">S</span></button>
+      </div>
+      <div class="linha-ctrl linha-amb">
+        <div class="campo"><label for="amb-semente" data-i18n="amb.semente">Semente do ruído</label><input type="text" inputmode="numeric" id="amb-semente" value="1"></div>
+        <button type="button" class="btn" id="amb-reiniciar" data-i18n="amb.reiniciar">Reiniciar</button>
+        <button type="button" class="btn" id="amb-proxima" data-i18n="amb.proxima">Nova semente</button>
+      </div>
+      <div class="linha-chips">
+        <label class="chip-check"><input type="checkbox" id="amb-raios" checked> <span data-i18n="amb.raios">Mostrar raios</span></label>
+        <label class="chip-check"><input type="checkbox" id="amb-trilha" checked> <span data-i18n="amb.trilha">Mostrar trilha</span></label>
+      </div>
+      <ul class="legenda-mapa" data-i18n-attr="aria-label:amb.leg.t" aria-label="Legenda do mapa">
+        <li><i class="lg lg-bloco"></i><span data-i18n="amb.leg.bloco">Bloco: impede o movimento</span></li>
+        <li><i class="lg lg-destr"></i><span data-i18n="amb.leg.destr">Destroços: −10 ao entrar no disco</span></li>
+        <li><i class="lg lg-corr"></i><span data-i18n="amb.leg.corr">Correnteza: arrasto para o sul</span></li>
+        <li><i class="lg lg-pessoa">P</i><span data-i18n="amb.leg.pessoa">Pessoa ilhada: embarque pelo raio</span></li>
+        <li><i class="lg lg-abrigo">H</i><span data-i18n="amb.leg.abrigo">Abrigo: desembarque pelo raio</span></li>
+      </ul>
+      <p id="amb-fim" class="msg-fim" role="status" aria-live="polite"></p>
+    </div>
+
+    <div class="coluna">
+      <div class="cartao">
+        <h3 data-i18n="amb.estado.t">Estado do episódio</h3>
+        <dl class="hud" id="amb-hud"></dl>
+        <ul class="pessoas" id="amb-pessoas" aria-live="polite"></ul>
+      </div>
+      <div class="cartao">
+        <h3 data-i18n="amb.corr.t">Correnteza</h3>
+        <div class="medidor" id="amb-medidor" role="meter" aria-valuemin="0" aria-valuemax="1" aria-valuenow="0.5" data-i18n-attr="aria-label:amb.corr.aria" aria-label="Intensidade da correnteza, de 0 a 1">
+          <div class="med-trilho"><i id="amb-med-barra"></i><b id="amb-med-media" title="μ"></b></div>
+          <div class="med-esc"><span>0</span><span id="amb-med-val" class="med-val">0,50</span><span>1</span></div>
+        </div>
+        <canvas id="amb-spark" class="spark" role="img" data-i18n-attr="aria-label:amb.corr.spark_aria" aria-label="Gráfico da intensidade da correnteza ao longo dos passos do episódio."></canvas>
+        <p class="mini just" id="amb-corr-d"></p>
+      </div>
+      <div class="cartao">
+        <h3 data-i18n="amb.obs.t">O que o agente recebe: 13 números</h3>
+        <table class="tab tab-obs" id="amb-obs"><thead><tr><th scope="col">#</th><th scope="col" data-i18n="amb.obs.nome">Componente</th><th scope="col" data-i18n="amb.obs.valor">Valor</th><th scope="col"><span class="so-leitor" data-i18n="amb.obs.barra">Barra</span></th></tr></thead><tbody></tbody></table>
+        <p class="mini just" data-i18n-html="amb.obs.d">Posição normalizada pelo tamanho do mapa, situação de cada pessoa em <em>one-hot</em> (ilhada, a bordo, salva), ocupação do barco dividida pela capacidade e intensidade <em>I</em> da correnteza. Nenhum atributo indica a direção do alvo: as redes e o modelo linear descobrem sozinhos como chegar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ POLÍTICAS ============================ -->
+<section id="politicas" class="sec" aria-labelledby="pol-t">
+  <h2 id="pol-t" data-i18n="pol.t">Políticas: assistir e comparar</h2>
+  <p class="lead just" data-i18n-html="pol.lead">Os agentes escolhidos são executados <strong>no mesmo episódio</strong>: a semente fixa a sequência de ruído (movimento e correnteza), idêntica para todos, de modo que as diferenças vêm só das decisões. As políticas de DQN, PPO e A2C são as redes treinadas no experimento, executadas aqui em JavaScript (ação de maior saída, sem exploração).</p>
+
+  <div class="cartao">
+    <h3 data-i18n="pol.agentes">Agentes</h3>
+    <div class="chips" id="pol-agentes" role="group" data-i18n-attr="aria-label:pol.agentes" aria-label="Agentes"></div>
+    <div class="linha-ctrl linha-pol" id="pol-sementes-modelo"></div>
+    <div class="linha-ctrl">
+      <div class="campo"><label for="pol-semente" data-i18n="pol.semente">Semente do episódio</label><input type="text" inputmode="numeric" id="pol-semente" value="10001"></div>
+      <div class="campo"><label for="pol-vel"><span data-i18n="pol.vel">Velocidade</span>: <output id="pol-vel-v">8</output> <span data-i18n="pol.vel_u">passos/s</span></label><input type="range" id="pol-vel" min="1" max="40" step="1" value="8"></div>
+      <label class="chip-check"><input type="checkbox" id="pol-continuo"> <span data-i18n="pol.continuo">Continuar em novos episódios</span></label>
+    </div>
+    <div class="botoes">
+      <button type="button" class="btn primario" id="pol-play" aria-pressed="false" data-i18n="pol.play">Reproduzir</button>
+      <button type="button" class="btn" id="pol-passo" data-i18n="pol.passo">Um passo</button>
+      <button type="button" class="btn" id="pol-reiniciar" data-i18n="pol.reiniciar">Reiniciar episódio</button>
+      <button type="button" class="btn" id="pol-proxima" data-i18n="pol.proxima">Próxima semente</button>
+    </div>
+  </div>
+
+  <div class="paineis" id="pol-paineis"></div>
+  <p class="so-leitor" id="pol-live" role="status" aria-live="polite"></p>
+
+  <div class="cartao">
+    <h3 data-i18n="pol.vivo.t">Métricas ao vivo (episódios assistidos)</h3>
+    <div class="rolagem"><table class="tab" id="pol-vivo"></table></div>
+    <div class="botoes"><button type="button" class="btn" id="pol-zerar" data-i18n="pol.zerar">Zerar métricas</button></div>
+    <p class="mini just" data-i18n="pol.vivo.d">Acumulam a cada episódio concluído (sementes repetidas não contam duas vezes); com poucos episódios, as médias oscilam muito. Para uma estimativa melhor, usar a comparação abaixo.</p>
+  </div>
+
+  <div class="cartao">
+    <h3 data-i18n="pol.cmp.t">Comparação em N episódios</h3>
+    <p class="just" data-i18n="pol.cmp.d">Cada agente é executado em N episódios com sementes consecutivas (as mesmas para todos), em um Web Worker. As sementes padrão (10000 em diante) são as da avaliação do experimento. Os intervalos de confiança de 95% são calculados entre episódios, não entre sementes de treino.</p>
+    <div class="linha-ctrl">
+      <div class="campo"><label for="cmp-n" data-i18n="pol.cmp.n">Episódios (N)</label><input type="text" inputmode="numeric" id="cmp-n" value="100"></div>
+      <div class="campo"><label for="cmp-s0" data-i18n="pol.cmp.s0">Semente inicial</label><input type="text" inputmode="numeric" id="cmp-s0" value="10000"></div>
+      <label class="chip-check" id="cmp-todas-l"><input type="checkbox" id="cmp-todas"> <span data-i18n="pol.cmp.todas">Incluir todas as sementes de treino</span></label>
+    </div>
+    <div class="botoes">
+      <button type="button" class="btn primario" id="cmp-go" data-i18n="pol.cmp.go">Comparar</button>
+      <button type="button" class="btn" id="cmp-parar" disabled data-i18n="pol.cmp.parar">Parar</button>
+    </div>
+    <div class="progresso" id="cmp-prog" hidden><div class="barra"><span id="cmp-barra"></span></div><p class="mini" id="cmp-prog-t"></p></div>
+    <div id="cmp-res" hidden>
+      <div class="rolagem"><table class="tab" id="cmp-tab"></table></div>
+      <div class="graficos2">
+        <figure><figcaption data-i18n="pol.cmp.g_ret">Retorno descontado (média e IC95%)</figcaption><canvas id="cmp-g-ret" class="grafico" role="img" data-i18n-attr="aria-label:pol.cmp.g_ret" aria-label="Retorno descontado (média e IC95%)"></canvas></figure>
+        <figure><figcaption data-i18n="pol.cmp.g_suc">Taxa de sucesso (média e IC95%)</figcaption><canvas id="cmp-g-suc" class="grafico" role="img" data-i18n-attr="aria-label:pol.cmp.g_suc" aria-label="Taxa de sucesso (média e IC95%)"></canvas></figure>
+      </div>
+      <p class="mini just" id="cmp-nota"></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ TREINAR ============================ -->
+<section id="treinar" class="sec" aria-labelledby="tr-t">
+  <h2 id="tr-t" data-i18n="tr.t">Treinar o Sarsa no navegador</h2>
+  <p class="lead just" data-i18n-html="tr.lead">Sarsa semi-gradiente com aproximação linear e <em>tile coding</em> (Sutton e Barto, caps. 9 e 10; Aulas 12 e 13), o mesmo algoritmo do Python. A posição (x, y) e a intensidade <em>I</em> são cobertas por <strong>grades deslocadas</strong> (<em>tilings</em>); a situação das pessoas escolhe o bloco de pesos. É possível ajustar a resolução da grade, o número de <em>tilings</em>, α, ε e γ e acompanhar a curva de aprendizado.</p>
+
+  <div class="grade-treino">
+    <div class="cartao">
+      <h3 data-i18n="tr.params">Parâmetros</h3>
+      <div class="campo"><label for="tr-preset" data-i18n="tr.preset">Predefinição</label>
+        <select id="tr-preset">
+          <option value="8x8x3_0.3" data-i18n="tr.preset_8">8 × 8 × 3, α = 0,3 (padrão)</option>
+          <option value="6x6x3_0.3" data-i18n="tr.preset_6">6 × 6 × 3, α = 0,3 (grade grossa)</option>
+          <option value="12x12x4_0.3" data-i18n="tr.preset_12">12 × 12 × 4, α = 0,3 (grade fina)</option>
+          <option value="12x12x4_0.1" data-i18n="tr.preset_12b">12 × 12 × 4, α = 0,1 (aprende devagar)</option>
+          <option value="custom" data-i18n="tr.preset_c">Personalizada</option>
+        </select>
+      </div>
+      <fieldset class="campo grupo-grade"><legend data-i18n="tr.grade">Grade (tiles por dimensão)</legend>
+        <div class="trio">
+          <label>x <input type="text" inputmode="numeric" id="tr-nx" value="8" aria-describedby="tr-grade-d"></label>
+          <label>y <input type="text" inputmode="numeric" id="tr-ny" value="8"></label>
+          <label>I <input type="text" inputmode="numeric" id="tr-ni" value="3"></label>
+        </div>
+      </fieldset>
+      <p class="mini" id="tr-grade-d"></p>
+      <div class="campo"><label for="tr-ntil" data-i18n="tr.ntil">Tilings (grades deslocadas)</label><input type="text" inputmode="numeric" id="tr-ntil" value="8"></div>
+      <div class="campo"><label for="tr-alfa" data-i18n="tr.alfa">α (passo de aprendizado)</label><input type="text" inputmode="decimal" id="tr-alfa" value="0,3"></div>
+      <div class="par-campos">
+        <div class="campo"><label for="tr-eps0" data-i18n="tr.eps0">ε inicial</label><input type="text" inputmode="decimal" id="tr-eps0" value="0,3"></div>
+        <div class="campo"><label for="tr-eps1" data-i18n="tr.eps1">ε final</label><input type="text" inputmode="decimal" id="tr-eps1" value="0,02"></div>
+      </div>
+      <div class="par-campos">
+        <div class="campo"><label for="tr-gama" data-i18n="tr.gama">γ (desconto)</label><input type="text" inputmode="decimal" id="tr-gama" value="0,99"></div>
+        <div class="campo"><label for="tr-sem" data-i18n="tr.semente">Semente</label><input type="text" inputmode="numeric" id="tr-sem" value="0"></div>
+      </div>
+      <div class="campo"><label for="tr-passos" data-i18n="tr.passos">Passos de interação</label><input type="text" inputmode="numeric" id="tr-passos" value="300000"></div>
+      <label class="chip-check"><input type="checkbox" id="tr-anima" checked> <span data-i18n="tr.anima">Animar a curva (mais devagar)</span></label>
+      <div class="botoes">
+        <button type="button" class="btn primario" id="tr-go" data-i18n="tr.treinar">Treinar</button>
+        <button type="button" class="btn" id="tr-parar" disabled data-i18n="tr.parar">Parar</button>
+      </div>
+      <p class="mini just" id="tr-erro" role="alert" hidden></p>
+      <p class="mini just" data-i18n="tr.dica">O ε decai linearmente de ε inicial a ε final na primeira metade do treino. O passo efetivo por característica é α dividido pelo número de tilings. Resolução alta com α pequeno aprende devagar: o número de pesos cresce com a grade.</p>
+    </div>
+
+    <div class="coluna">
+      <div class="cartao">
+        <h3 data-i18n="tr.curva">Curva de aprendizado ao vivo</h3>
+        <div class="progresso"><div class="barra"><span id="tr-barra"></span></div><p class="mini" id="tr-status" aria-live="polite" data-i18n="tr.status0">Pronto para treinar.</p></div>
+        <div class="graficos2">
+          <figure><figcaption data-i18n="tr.g_ret">Retorno descontado da política gulosa</figcaption><canvas id="tr-g-ret" class="grafico" role="img" data-i18n-attr="aria-label:tr.g_ret" aria-label="Retorno descontado da política gulosa"></canvas></figure>
+          <figure><figcaption data-i18n="tr.g_suc">Taxa de sucesso (avaliação e treino)</figcaption><canvas id="tr-g-suc" class="grafico" role="img" data-i18n-attr="aria-label:tr.g_suc" aria-label="Taxa de sucesso (avaliação e treino)"></canvas></figure>
+        </div>
+        <p class="mini just" data-i18n="tr.g_d">A cada ponto, a política gulosa é avaliada em 20 episódios (sementes 20000 em diante). A curva de “treino” é a média móvel dos últimos 50 episódios com exploração ε.</p>
+      </div>
+      <div class="cartao" id="tr-res-cartao" hidden>
+        <h3 data-i18n="tr.res.t">Política aprendida</h3>
+        <div class="rolagem"><table class="tab" id="tr-res"></table></div>
+        <p class="mini just" id="tr-res-nota"></p>
+        <div class="grade2 tr-assistir">
+          <div>
+            <div class="mapa-wrap"><canvas id="tr-canvas" role="img" data-i18n-attr="aria-label:tr.canvas_aria" aria-label="Mapa com o barco controlado pela política Sarsa aprendida."></canvas></div>
+            <p class="mini" id="tr-ep-info" aria-live="polite"></p>
+          </div>
+          <div>
+            <h4 data-i18n="tr.assistir">Assistir à política aprendida</h4>
+            <div class="campo"><label for="tr-ep-sem" data-i18n="pol.semente">Semente do episódio</label><input type="text" inputmode="numeric" id="tr-ep-sem" value="10001"></div>
+            <div class="botoes">
+              <button type="button" class="btn primario" id="tr-play" data-i18n="tr.reproduzir">Reproduzir episódio</button>
+              <button type="button" class="btn" id="tr-prox" data-i18n="pol.proxima">Próxima semente</button>
+            </div>
+            <p class="mini just" data-i18n="tr.usar_d">O agente treinado aqui também aparece como “Sarsa (treinado aqui)” na seção Políticas, para comparação lado a lado e em N episódios.</p>
+            <a class="btn" href="#politicas" data-i18n="tr.ir_pol">Ir para Políticas</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ RESULTADOS ============================ -->
+<section id="resultados" class="sec" aria-labelledby="res-t">
+  <h2 id="res-t" data-i18n="res.t">Resultados do experimento</h2>
+  <p class="lead just" data-i18n="res.lead">Dados exportados dos CSV e JSON do experimento (stable-baselines3 e Sarsa): busca com todas as configurações e sementes, execuções finais da melhor configuração de cada algoritmo, curvas de aprendizado, hipóteses e o experimento suplementar com orçamento maior. Gráficos e tabelas são calculados aqui, sem bibliotecas externas.</p>
+  <div class="abas" role="tablist" data-i18n-attr="aria-label:res.abas" aria-label="Abas de resultados">
+    <button type="button" role="tab" id="aba-final" aria-controls="painel-final" aria-selected="true" data-i18n="res.aba.final">Resultado final</button>
+    <button type="button" role="tab" id="aba-busca" aria-controls="painel-busca" aria-selected="false" tabindex="-1" data-i18n="res.aba.busca">Busca completa</button>
+    <button type="button" role="tab" id="aba-curvas" aria-controls="painel-curvas" aria-selected="false" tabindex="-1" data-i18n="res.aba.curvas">Curvas</button>
+    <button type="button" role="tab" id="aba-hip" aria-controls="painel-hip" aria-selected="false" tabindex="-1" data-i18n="res.aba.hip">Hipóteses</button>
+    <button type="button" role="tab" id="aba-extra" aria-controls="painel-extra" aria-selected="false" tabindex="-1" data-i18n="res.aba.extra">Orçamento maior</button>
+    <button type="button" role="tab" id="aba-dados" aria-controls="painel-dados" aria-selected="false" tabindex="-1" data-i18n="res.aba.dados">Dados</button>
+  </div>
+
+  <div id="painel-final" role="tabpanel" aria-labelledby="aba-final" class="painel-aba">
+    <div class="cartao">
+      <h3 data-i18n="res.final.t">Melhor configuração de cada algoritmo, reexecutada com sementes novas</h3>
+      <p class="mini just" id="res-final-d"></p>
+      <div class="rolagem"><table class="tab" id="res-final-tab"></table></div>
+    </div>
+    <div class="cartao">
+      <div class="barras3">
+        <figure><figcaption data-i18n="res.g.ret">Retorno descontado</figcaption><canvas id="res-g-ret" class="grafico" role="img" data-i18n-attr="aria-label:res.g.ret" aria-label="Retorno descontado"></canvas></figure>
+        <figure><figcaption data-i18n="res.g.suc">Taxa de sucesso</figcaption><canvas id="res-g-suc" class="grafico" role="img" data-i18n-attr="aria-label:res.g.suc" aria-label="Taxa de sucesso"></canvas></figure>
+        <figure><figcaption data-i18n="res.g.toca">Episódios que tocam destroços</figcaption><canvas id="res-g-toca" class="grafico" role="img" data-i18n-attr="aria-label:res.g.toca" aria-label="Episódios que tocam destroços"></canvas></figure>
+      </div>
+      <p class="mini just" data-i18n="res.g.d">Barras: média entre sementes (algoritmos) ou entre episódios (linhas de base); barras de erro: IC95%. Os pontos brancos são as sementes individuais.</p>
+    </div>
+  </div>
+
+  <div id="painel-busca" role="tabpanel" aria-labelledby="aba-busca" class="painel-aba" hidden>
+    <div class="cartao">
+      <h3 data-i18n="res.busca.t">Todas as configurações testadas</h3>
+      <p class="mini just" id="res-busca-d"></p>
+      <div class="linha-ctrl">
+        <div class="chips" id="busca-algos" role="group" data-i18n-attr="aria-label:res.filtro_algo" aria-label="Filtrar por algoritmo"></div>
+        <div class="campo larga"><label for="busca-q" data-i18n="res.busca.q">Buscar (configuração ou hiperparâmetro)</label><input type="search" id="busca-q" autocomplete="off"></div>
+        <label class="chip-check"><input type="checkbox" id="busca-sementes"> <span data-i18n="res.busca.sem">Mostrar sementes</span></label>
+      </div>
+      <p class="mini" id="busca-contagem" aria-live="polite"></p>
+      <div class="rolagem"><table class="tab tab-busca" id="busca-tab"></table></div>
+    </div>
+  </div>
+
+  <div id="painel-curvas" role="tabpanel" aria-labelledby="aba-curvas" class="painel-aba" hidden>
+    <div class="cartao">
+      <h3 data-i18n="res.curvas.t">Curvas de aprendizado</h3>
+      <div class="linha-ctrl">
+        <div class="campo larga"><label for="cv-fonte" data-i18n="res.curvas.fonte">Fonte</label>
+          <select id="cv-fonte"><option value="final" data-i18n="res.curvas.f_final">Execuções finais (melhor config.)</option><option value="busca" data-i18n="res.curvas.f_busca">Busca (configs. de um algoritmo)</option></select></div>
+        <div class="campo larga"><label for="cv-metrica" data-i18n="res.curvas.metrica">Métrica</label>
+          <select id="cv-metrica"><option value="ret_desc" data-i18n="m.ret_desc">Retorno descontado</option><option value="ret" data-i18n="m.ret">Retorno</option><option value="sucesso" data-i18n="m.sucesso">Taxa de sucesso</option><option value="passos_ep" data-i18n="m.passos_ep">Passos por episódio</option></select></div>
+        <div class="campo larga"><label for="cv-banda" data-i18n="res.curvas.banda">Faixa</label>
+          <select id="cv-banda"><option value="ic" data-i18n="res.curvas.b_ic">IC95% entre sementes</option><option value="minmax" data-i18n="res.curvas.b_mm">Mínimo e máximo</option><option value="sementes" data-i18n="res.curvas.b_sem">Sementes individuais</option><option value="nenhuma" data-i18n="res.curvas.b_nen">Nenhuma</option></select></div>
+        <div class="campo" id="cv-algo-campo" hidden><label for="cv-algo" data-i18n="res.curvas.algo">Algoritmo</label><select id="cv-algo"></select></div>
+      </div>
+      <div class="linha-ctrl">
+        <div class="chips" id="cv-algos" role="group" data-i18n-attr="aria-label:res.filtro_algo" aria-label="Filtrar por algoritmo"></div>
+        <div class="chips" id="cv-refs" role="group" data-i18n-attr="aria-label:res.curvas.refs" aria-label="Linhas de referência"></div>
+      </div>
+      <figure class="fig-grande"><canvas id="cv-grafico" class="grafico grafico-g" role="img" data-i18n-attr="aria-label:res.curvas.aria" aria-label="Curvas de aprendizado (média entre sementes) por passos de interação."></canvas></figure>
+      <div id="cv-legenda" class="legenda-g"></div>
+      <p class="mini just" id="cv-nota"></p>
+    </div>
+  </div>
+
+  <div id="painel-hip" role="tabpanel" aria-labelledby="aba-hip" class="painel-aba" hidden>
+    <div class="cartao">
+      <h3 data-i18n="res.hip.t">Hipóteses</h3>
+      <ul class="lista" id="hip-lista"></ul>
+      <div id="hip-corpo"></div>
+    </div>
+  </div>
+
+  <div id="painel-extra" role="tabpanel" aria-labelledby="aba-extra" class="painel-aba" hidden>
+    <div class="cartao" id="ex-cartao">
+      <h3 data-i18n="res.extra.t">Experimento suplementar: cinco vezes mais passos para PPO e A2C</h3>
+      <p class="just" id="ex-d"></p>
+      <h4 data-i18n="res.extra.leitura">Leitura dos resultados</h4>
+      <ul class="lista" id="ex-achados"></ul>
+      <h4 data-i18n="res.extra.tab.t">Resumo por configuração</h4>
+      <div class="rolagem"><table class="tab" id="ex-tab-resumo"></table></div>
+      <p class="mini just" id="ex-lim"></p>
+    </div>
+    <div class="cartao">
+      <h3 id="ex-curvas-t"></h3>
+      <div class="linha-ctrl">
+        <div class="campo larga"><label for="ex-metrica" data-i18n="res.curvas.metrica">Métrica</label>
+          <select id="ex-metrica"><option value="sucesso" data-i18n="m.sucesso">Taxa de sucesso</option><option value="ret_desc" data-i18n="m.ret_desc">Retorno descontado</option></select></div>
+      </div>
+      <figure class="fig-grande"><canvas id="ex-grafico" class="grafico grafico-g" role="img" data-i18n-attr="aria-label:res.extra.curvas.aria" aria-label="Curvas de aprendizado por semente das runs com orçamento maior."></canvas></figure>
+      <div id="ex-legenda" class="legenda-g"></div>
+      <p class="mini just" id="ex-curvas-nota"></p>
+    </div>
+    <div class="cartao">
+      <h3 id="ex-sem-t"></h3>
+      <div class="rolagem"><table class="tab" id="ex-tab-sem"></table></div>
+      <p class="mini just" id="ex-sem-nota"></p>
+    </div>
+    <div class="cartao">
+      <h3 data-i18n="res.extra.cp.t">Sanidade da fábrica de agentes: CartPole-v1</h3>
+      <p class="just" id="ex-cp-d"></p>
+      <div class="rolagem"><table class="tab" id="ex-tab-cp"></table></div>
+    </div>
+  </div>
+
+  <div id="painel-dados" role="tabpanel" aria-labelledby="aba-dados" class="painel-aba" hidden>
+    <div class="cartao">
+      <h3 data-i18n="res.dados.t">Dados e protocolo</h3>
+      <div id="dados-protocolo"></div>
+      <h4 data-i18n="res.dados.arq">Arquivos (data/)</h4>
+      <ul class="links" id="dados-arquivos"></ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ SOBRE ============================ -->
+<section id="sobre" class="sec" aria-labelledby="sobre-t">
+  <h2 id="sobre-t" data-i18n="sobre.t">Sobre o laboratório</h2>
+  <div class="grade2">
+    <div class="cartao">
+      <h3 data-i18n="sobre.o_que">O que é</h3>
+      <p class="just" data-i18n-html="sobre.o_que_d">Aplicação estática (módulos ES e Web Workers, sem dependências de execução e sem etapa de build) que acompanha o <strong>Trabalho 3 de Aprendizado por Reforço</strong> (PPGCA/Unisinos, 2026/2): o barco de resgate do Trabalho 2, reformulado com estados contínuos, resolvido com DQN, PPO e A2C (stable-baselines3) e com Sarsa semi-gradiente sobre <em>tile coding</em>.</p>
+      <p class="just" data-i18n-html="sobre.autores">Autoria: Epitácio Vicente do Nascimento Neto e Antonio Clerton Santana de Araujo. Disciplina Aprendizado por Reforço, Prof. Gabriel de Oliveira Ramos. Laboratório e código sob licença MIT.</p>
+      <h3 data-i18n="sobre.rodar">Como rodar</h3>
+      <pre><code>npm run serve    # python3 -m http.server 8000
+npm test         # node --test tests/</code></pre>
+      <p class="mini just" data-i18n="sobre.rodar_d">O servidor HTTP é necessário (módulos ES e Web Workers não funcionam em file://). O GitHub Pages publica a raiz do repositório.</p>
+      <h3 data-i18n="sobre.testes">O que os testes verificam</h3>
+      <ul class="lista">
+        <li data-i18n="sobre.t1">Ambiente em JavaScript contra uma trajetória gerada pelo Python (posição, intensidade, recompensa e situação, tolerância de 1e-9) e contra as linhas de base de 500 episódios.</li>
+        <li data-i18n="sobre.t2">Inferência das redes contra o PyTorch, com observações fixas; tile coding e a regra do Sarsa contra o Python.</li>
+        <li data-i18n="sobre.t3">Dicionários PT e EN completos, voz impessoal e carga dos dados exportados.</li>
+      </ul>
+    </div>
+    <div class="cartao">
+      <h3 data-i18n="sobre.aulas">Aulas relacionadas</h3>
+      <table class="tab tab-txt"><thead><tr><th scope="col" data-i18n="sobre.aulas_aula">Aula</th><th scope="col" data-i18n="sobre.aulas_onde">Conteúdo e onde aparece</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">6</th><td data-i18n="sobre.a6">MDP, retorno, política e valor: o problema em Início e Ambiente.</td></tr>
+          <tr><th scope="row">7</th><td data-i18n="sobre.a7">Iteração de Valor: a política ótima do Trabalho 2, usada como linha de base tabular discretizada.</td></tr>
+          <tr><th scope="row">9</th><td data-i18n="sobre.a9">Sarsa tabular (diferença temporal): ponto de partida do Sarsa semi-gradiente.</td></tr>
+          <tr><th scope="row">12</th><td data-i18n="sobre.a12">Aproximação de função, agregação de estados e tile coding: seção Treinar.</td></tr>
+          <tr><th scope="row">13</th><td data-i18n="sobre.a13">Sarsa semi-gradiente, DQN e stable-baselines3: seções Políticas, Treinar e Resultados.</td></tr>
+        </tbody></table>
+      <h3 data-i18n="sobre.lim.t">Limitações</h3>
+      <ul class="lista" id="sobre-lim"></ul>
+    </div>
+  </div>
+  <div class="cartao">
+    <h3 data-i18n="sobre.refs">Referências</h3>
+    <ul class="lista refs">
+      <li>Sutton, R. S.; Barto, A. G. <em>Reinforcement Learning: An Introduction</em>. 2. ed. MIT Press, 2018.</li>
+      <li>Raffin, A. et al. Stable-Baselines3: Reliable Reinforcement Learning Implementations. <em>JMLR</em>, v. 22, n. 268, 2021.</li>
+      <li>Mnih, V. et al. Human-level control through deep reinforcement learning. <em>Nature</em>, v. 518, 2015. (DQN)</li>
+      <li>Schulman, J. et al. Proximal Policy Optimization Algorithms. arXiv:1707.06347, 2017. (PPO)</li>
+      <li>Mnih, V. et al. Asynchronous Methods for Deep Reinforcement Learning. <em>ICML</em>, 2016. (A3C; A2C é a variante síncrona)</li>
+      <li>Towers, M. et al. Gymnasium: A Standard Interface for Reinforcement Learning Environments. 2024.</li>
+    </ul>
+    <p class="mini" id="sobre-versao"></p>
+  </div>
+</section>
+</main>
+
+<footer class="rodape">
+  <p data-i18n="rodape.1">Laboratório de Aprendizado por Reforço · Trabalho 3 · PPGCA/Unisinos 2026/2 · Licença MIT</p>
+  <p><a href="https://github.com/epineto/rescue-boat-deeprl-unisinos" rel="noopener">github.com/epineto/rescue-boat-deeprl-unisinos</a></p>
+</footer>
+
+<script type="module" src="src/ui/app.js"></script>
+</body>
+</html>

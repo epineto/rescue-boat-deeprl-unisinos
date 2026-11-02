@@ -1,0 +1,11 @@
+algo,config,semente,passos,ret,ret_ic95_ep,ret_min,frac_ep_475,tempo_s,hp
+A2C,a2c_16envs,200,100000,500.0,0.0,500.0,1.0,33.2,"{""n_envs"": 16, ""n_steps"": 16, ""learning_rate"": 0.001, ""ent_coef"": 0.05, ""gae_lambda"": 0.95, ""escala_recompensa"": 0.1}"
+A2C,a2c_16envs,201,100000,500.0,0.0,500.0,1.0,32.7,"{""n_envs"": 16, ""n_steps"": 16, ""learning_rate"": 0.001, ""ent_coef"": 0.05, ""gae_lambda"": 0.95, ""escala_recompensa"": 0.1}"
+A2C,a2c_padrao,200,100000,132.15,2.3091351764584713,119.0,0.0,219.0,{}
+A2C,a2c_padrao,201,100000,500.0,0.0,500.0,1.0,224.4,{}
+PPO,ppo_8envs,200,100000,500.0,0.0,500.0,1.0,94.9,"{""learning_rate"": 0.001, ""n_steps"": 64, ""batch_size"": 128, ""ent_coef"": 0.05, ""escala_recompensa"": 0.1, ""n_envs"": 8}"
+PPO,ppo_8envs,201,100000,500.0,0.0,500.0,1.0,93.2,"{""learning_rate"": 0.001, ""n_steps"": 64, ""batch_size"": 128, ""ent_coef"": 0.05, ""escala_recompensa"": 0.1, ""n_envs"": 8}"
+PPO,ppo_clip0.3,200,100000,500.0,0.0,500.0,1.0,181.1,"{""learning_rate"": 0.001, ""n_steps"": 512, ""batch_size"": 128, ""ent_coef"": 0.05, ""escala_recompensa"": 0.1, ""clip_range"": 0.3}"
+PPO,ppo_clip0.3,201,100000,500.0,0.0,500.0,1.0,181.2,"{""learning_rate"": 0.001, ""n_steps"": 512, ""batch_size"": 128, ""ent_coef"": 0.05, ""escala_recompensa"": 0.1, ""clip_range"": 0.3}"
+PPO,ppo_padrao,200,100000,500.0,0.0,500.0,1.0,222.9,{}
+PPO,ppo_padrao,201,100000,500.0,0.0,500.0,1.0,223.3,{}

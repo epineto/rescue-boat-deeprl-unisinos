@@ -1,0 +1,630 @@
+{
+ "versao": 1,
+ "completo": true,
+ "rapido": false,
+ "ambiente": {
+  "passo": 0.7,
+  "sigma_mov": 0.05,
+  "r_embarque": 0.8,
+  "r_abrigo": 0.9,
+  "r_destrocos": 0.5,
+  "corr_vmax": 0.5,
+  "corr_sigma": 0.05,
+  "corr_media": 0.5,
+  "corr_theta": 0.1,
+  "corr_sigma_i": 0.12,
+  "corr_sigma_0": 0.25,
+  "max_passos": 100,
+  "capacidade": 2,
+  "r_passo": -1.0,
+  "r_destrocos_rec": -10.0,
+  "r_pessoa": 50.0,
+  "r_final": 100.0
+ },
+ "mapa": [
+  "P..P..",
+  ".#..#P",
+  "~~~~~~",
+  "..xx..",
+  ".#..#.",
+  "..H..."
+ ],
+ "v_estrela_t2": 161.92990033618582,
+ "protocolo": {
+  "orcamento_busca": 200000,
+  "orcamento_final": 400000,
+  "sementes_busca": [
+   0,
+   1,
+   2
+  ],
+  "sementes_final": [
+   100,
+   101,
+   102,
+   103,
+   104
+  ],
+  "criterio": "maior retorno descontado médio (γ = 0,99) na busca; desempate pela taxa de sucesso"
+ },
+ "versoes": {
+  "python": "3.12.3",
+  "numpy": "2.5.3",
+  "torch": "2.14.1+cpu",
+  "stable_baselines3": "2.9.2",
+  "gymnasium": "1.4.0"
+ },
+ "algos": [
+  "DQN",
+  "PPO",
+  "A2C",
+  "SARSA"
+ ],
+ "configs": {
+  "A2C": {
+   "a2c_16envs": {
+    "n_envs": 16,
+    "n_steps": 16,
+    "learning_rate": 0.001,
+    "ent_coef": 0.05,
+    "gae_lambda": 0.95,
+    "escala_recompensa": 0.1
+   },
+   "a2c_8envs_ent0.1": {
+    "n_envs": 8,
+    "n_steps": 16,
+    "learning_rate": 0.001,
+    "ent_coef": 0.1,
+    "gae_lambda": 0.95,
+    "escala_recompensa": 0.1
+   },
+   "a2c_8envs_n16": {
+    "n_envs": 8,
+    "n_steps": 16,
+    "learning_rate": 0.001,
+    "ent_coef": 0.05,
+    "gae_lambda": 0.95,
+    "escala_recompensa": 0.1
+   },
+   "a2c_8envs_n32": {
+    "n_envs": 8,
+    "n_steps": 32,
+    "learning_rate": 0.001,
+    "ent_coef": 0.05,
+    "gae_lambda": 0.95,
+    "escala_recompensa": 0.1
+   },
+   "a2c_padrao": {},
+   "a2c_vf1.0_lr5e-4": {
+    "n_envs": 8,
+    "n_steps": 16,
+    "learning_rate": 0.0005,
+    "ent_coef": 0.05,
+    "gae_lambda": 0.95,
+    "escala_recompensa": 0.1,
+    "vf_coef": 1.0
+   }
+  },
+  "DQN": {
+   "dqn_expl0.2_eps0.1": {
+    "learning_rate": 0.001,
+    "buffer_size": 100000,
+    "learning_starts": 1000,
+    "exploration_fraction": 0.2,
+    "target_update_interval": 500,
+    "batch_size": 64,
+    "escala_recompensa": 0.1,
+    "exploration_final_eps": 0.1
+   },
+   "dqn_gamma0.95": {
+    "learning_rate": 0.001,
+    "buffer_size": 100000,
+    "learning_starts": 1000,
+    "exploration_fraction": 0.4,
+    "target_update_interval": 500,
+    "batch_size": 64,
+    "escala_recompensa": 0.1,
+    "gamma": 0.95
+   },
+   "dqn_lr1e-3_expl0.4": {
+    "learning_rate": 0.001,
+    "buffer_size": 100000,
+    "learning_starts": 1000,
+    "exploration_fraction": 0.4,
+    "target_update_interval": 500,
+    "batch_size": 64,
+    "escala_recompensa": 0.1
+   },
+   "dqn_lr5e-4_rede128": {
+    "learning_rate": 0.0005,
+    "buffer_size": 100000,
+    "learning_starts": 1000,
+    "exploration_fraction": 0.4,
+    "target_update_interval": 1000,
+    "batch_size": 64,
+    "escala_recompensa": 0.1,
+    "net_arch": [
+     128,
+     128
+    ]
+   },
+   "dqn_padrao": {},
+   "dqn_sem_escala": {
+    "learning_rate": 0.001,
+    "buffer_size": 100000,
+    "learning_starts": 1000,
+    "exploration_fraction": 0.4,
+    "target_update_interval": 500,
+    "batch_size": 64,
+    "escala_recompensa": 1.0
+   }
+  },
+  "PPO": {
+   "ppo_8envs": {
+    "learning_rate": 0.001,
+    "n_steps": 64,
+    "batch_size": 128,
+    "ent_coef": 0.05,
+    "escala_recompensa": 0.1,
+    "n_envs": 8
+   },
+   "ppo_clip0.3": {
+    "learning_rate": 0.001,
+    "n_steps": 512,
+    "batch_size": 128,
+    "ent_coef": 0.05,
+    "escala_recompensa": 0.1,
+    "clip_range": 0.3
+   },
+   "ppo_gamma0.95": {
+    "learning_rate": 0.001,
+    "n_steps": 512,
+    "batch_size": 128,
+    "ent_coef": 0.05,
+    "escala_recompensa": 0.1,
+    "gamma": 0.95
+   },
+   "ppo_lr1e-3_ent0.05": {
+    "learning_rate": 0.001,
+    "n_steps": 512,
+    "batch_size": 128,
+    "ent_coef": 0.05,
+    "escala_recompensa": 0.1
+   },
+   "ppo_lr3e-4_ent0.01": {
+    "learning_rate": 0.0003,
+    "n_steps": 512,
+    "batch_size": 64,
+    "ent_coef": 0.01,
+    "escala_recompensa": 0.1
+   },
+   "ppo_padrao": {}
+  },
+  "SARSA": {
+   "sarsa_12x12x4_a0.1": {
+    "n_tiles": [
+     12,
+     12,
+     4
+    ],
+    "n_til": 8,
+    "alpha": 0.1
+   },
+   "sarsa_12x12x4_a0.3": {
+    "n_tiles": [
+     12,
+     12,
+     4
+    ],
+    "n_til": 8,
+    "alpha": 0.3
+   },
+   "sarsa_6x6x3_a0.3": {
+    "n_tiles": [
+     6,
+     6,
+     3
+    ],
+    "n_til": 8,
+    "alpha": 0.3
+   },
+   "sarsa_8x8x3_a0.1": {
+    "n_tiles": [
+     8,
+     8,
+     3
+    ],
+    "n_til": 8,
+    "alpha": 0.1
+   },
+   "sarsa_8x8x3_a0.3": {
+    "n_tiles": [
+     8,
+     8,
+     3
+    ],
+    "n_til": 8,
+    "alpha": 0.3
+   },
+   "sarsa_8x8x3_eps0.5": {
+    "n_tiles": [
+     8,
+     8,
+     3
+    ],
+    "n_til": 8,
+    "alpha": 0.3,
+    "eps0": 0.5,
+    "eps1": 0.05
+   }
+  }
+ },
+ "melhores": {
+  "DQN": {
+   "config": "dqn_gamma0.95",
+   "hp": {
+    "learning_rate": 0.001,
+    "buffer_size": 100000,
+    "learning_starts": 1000,
+    "exploration_fraction": 0.4,
+    "target_update_interval": 500,
+    "batch_size": 64,
+    "escala_recompensa": 0.1,
+    "gamma": 0.95
+   }
+  },
+  "PPO": {
+   "config": "ppo_clip0.3",
+   "hp": {
+    "learning_rate": 0.001,
+    "n_steps": 512,
+    "batch_size": 128,
+    "ent_coef": 0.05,
+    "escala_recompensa": 0.1,
+    "clip_range": 0.3
+   }
+  },
+  "A2C": {
+   "config": "a2c_16envs",
+   "hp": {
+    "n_envs": 16,
+    "n_steps": 16,
+    "learning_rate": 0.001,
+    "ent_coef": 0.05,
+    "gae_lambda": 0.95,
+    "escala_recompensa": 0.1
+   }
+  },
+  "SARSA": {
+   "config": "sarsa_6x6x3_a0.3",
+   "hp": {
+    "n_tiles": [
+     6,
+     6,
+     3
+    ],
+    "n_til": 8,
+    "alpha": 0.3
+   }
+  }
+ },
+ "contagem": {
+  "busca": 72,
+  "busca_esperado": 72,
+  "final": 20,
+  "final_esperado": 20
+ },
+ "arquivos": [
+  "auc_curvas.csv",
+  "busca_resumo.csv",
+  "busca_runs.csv",
+  "cartpole_resumo.csv",
+  "cartpole_runs.csv",
+  "curvas_busca.csv",
+  "curvas_finais.csv",
+  "extra_curvas.csv",
+  "extra_resumo.csv",
+  "extra_runs.csv",
+  "final_resumo.csv",
+  "final_runs.csv",
+  "hipoteses.csv",
+  "linhas_de_base.csv",
+  "paridade.json"
+ ],
+ "modelos": [
+  {
+   "id": "A2C_s100",
+   "algo": "A2C",
+   "config": "a2c_16envs",
+   "semente": 100,
+   "arquivo": "modelos/A2C_s100.json",
+   "n_parametros": 5316,
+   "ativacao": "tanh",
+   "metricas": {
+    "ret": -50.0,
+    "ret_desc": -21.496778806886695,
+    "sucesso": 0.0,
+    "passos": 100.0,
+    "toca": 0.0
+   }
+  },
+  {
+   "id": "A2C_s101",
+   "algo": "A2C",
+   "config": "a2c_16envs",
+   "semente": 101,
+   "arquivo": "modelos/A2C_s101.json",
+   "n_parametros": 5316,
+   "ativacao": "tanh",
+   "metricas": {
+    "ret": -50.0,
+    "ret_desc": -21.555596228269987,
+    "sucesso": 0.0,
+    "passos": 100.0,
+    "toca": 0.0
+   }
+  },
+  {
+   "id": "A2C_s102",
+   "algo": "A2C",
+   "config": "a2c_16envs",
+   "semente": 102,
+   "arquivo": "modelos/A2C_s102.json",
+   "n_parametros": 5316,
+   "ativacao": "tanh",
+   "metricas": {
+    "ret": -100.0,
+    "ret_desc": -63.39676587267699,
+    "sucesso": 0.0,
+    "passos": 100.0,
+    "toca": 0.0
+   }
+  },
+  {
+   "id": "A2C_s103",
+   "algo": "A2C",
+   "config": "a2c_16envs",
+   "semente": 103,
+   "arquivo": "modelos/A2C_s103.json",
+   "n_parametros": 5316,
+   "ativacao": "tanh",
+   "metricas": {
+    "ret": -50.0,
+    "ret_desc": -21.427360736253277,
+    "sucesso": 0.0,
+    "passos": 100.0,
+    "toca": 0.0
+   }
+  },
+  {
+   "id": "A2C_s104",
+   "algo": "A2C",
+   "config": "a2c_16envs",
+   "semente": 104,
+   "arquivo": "modelos/A2C_s104.json",
+   "n_parametros": 5316,
+   "ativacao": "tanh",
+   "metricas": {
+    "ret": -100.0,
+    "ret_desc": -63.39676587267699,
+    "sucesso": 0.0,
+    "passos": 100.0,
+    "toca": 0.0
+   }
+  },
+  {
+   "id": "DQN_s100",
+   "algo": "DQN",
+   "config": "dqn_gamma0.95",
+   "semente": 100,
+   "arquivo": "modelos/DQN_s100.json",
+   "n_parametros": 5316,
+   "ativacao": "relu",
+   "metricas": {
+    "ret": 201.78,
+    "ret_desc": 138.9606581830555,
+    "sucesso": 0.995,
+    "passos": 39.255,
+    "toca": 0.88
+   }
+  },
+  {
+   "id": "DQN_s101",
+   "algo": "DQN",
+   "config": "dqn_gamma0.95",
+   "semente": 101,
+   "arquivo": "modelos/DQN_s101.json",
+   "n_parametros": 5316,
+   "ativacao": "relu",
+   "metricas": {
+    "ret": 199.45,
+    "ret_desc": 140.05152208457272,
+    "sucesso": 0.995,
+    "passos": 41.565,
+    "toca": 0.9
+   }
+  },
+  {
+   "id": "DQN_s102",
+   "algo": "DQN",
+   "config": "dqn_gamma0.95",
+   "semente": 102,
+   "arquivo": "modelos/DQN_s102.json",
+   "n_parametros": 5316,
+   "ativacao": "relu",
+   "metricas": {
+    "ret": 197.65,
+    "ret_desc": 139.19085656131267,
+    "sucesso": 0.985,
+    "passos": 41.91,
+    "toca": 0.9
+   }
+  },
+  {
+   "id": "DQN_s103",
+   "algo": "DQN",
+   "config": "dqn_gamma0.95",
+   "semente": 103,
+   "arquivo": "modelos/DQN_s103.json",
+   "n_parametros": 5316,
+   "ativacao": "relu",
+   "metricas": {
+    "ret": 201.445,
+    "ret_desc": 142.51168934974262,
+    "sucesso": 1.0,
+    "passos": 40.23,
+    "toca": 0.92
+   }
+  },
+  {
+   "id": "DQN_s104",
+   "algo": "DQN",
+   "config": "dqn_gamma0.95",
+   "semente": 104,
+   "arquivo": "modelos/DQN_s104.json",
+   "n_parametros": 5316,
+   "ativacao": "relu",
+   "metricas": {
+    "ret": 203.135,
+    "ret_desc": 140.0299467504706,
+    "sucesso": 1.0,
+    "passos": 38.855,
+    "toca": 0.885
+   }
+  },
+  {
+   "id": "PPO_s100",
+   "algo": "PPO",
+   "config": "ppo_clip0.3",
+   "semente": 100,
+   "arquivo": "modelos/PPO_s100.json",
+   "n_parametros": 5316,
+   "ativacao": "tanh",
+   "metricas": {
+    "ret": -50.0,
+    "ret_desc": -21.71487561320363,
+    "sucesso": 0.0,
+    "passos": 100.0,
+    "toca": 0.0
+   }
+  },
+  {
+   "id": "PPO_s101",
+   "algo": "PPO",
+   "config": "ppo_clip0.3",
+   "semente": 101,
+   "arquivo": "modelos/PPO_s101.json",
+   "n_parametros": 5316,
+   "ativacao": "tanh",
+   "metricas": {
+    "ret": -50.0,
+    "ret_desc": -21.39721042861207,
+    "sucesso": 0.0,
+    "passos": 100.0,
+    "toca": 0.0
+   }
+  },
+  {
+   "id": "PPO_s102",
+   "algo": "PPO",
+   "config": "ppo_clip0.3",
+   "semente": 102,
+   "arquivo": "modelos/PPO_s102.json",
+   "n_parametros": 5316,
+   "ativacao": "tanh",
+   "metricas": {
+    "ret": 145.625,
+    "ret_desc": 98.54219951920778,
+    "sucesso": 0.78,
+    "passos": 63.275,
+    "toca": 0.9
+   }
+  },
+  {
+   "id": "PPO_s103",
+   "algo": "PPO",
+   "config": "ppo_clip0.3",
+   "semente": 103,
+   "arquivo": "modelos/PPO_s103.json",
+   "n_parametros": 5316,
+   "ativacao": "tanh",
+   "metricas": {
+    "ret": -50.0,
+    "ret_desc": -21.397877307992076,
+    "sucesso": 0.0,
+    "passos": 100.0,
+    "toca": 0.0
+   }
+  },
+  {
+   "id": "PPO_s104",
+   "algo": "PPO",
+   "config": "ppo_clip0.3",
+   "semente": 104,
+   "arquivo": "modelos/PPO_s104.json",
+   "n_parametros": 5316,
+   "ativacao": "tanh",
+   "metricas": {
+    "ret": -100.0,
+    "ret_desc": -63.39676587267699,
+    "sucesso": 0.0,
+    "passos": 100.0,
+    "toca": 0.0
+   }
+  }
+ ],
+ "sarsa": {
+  "id": "sarsa_s100",
+  "algo": "SARSA",
+  "config": "sarsa_6x6x3_a0.3",
+  "semente": 100,
+  "arquivo": "modelos/sarsa_s100.json",
+  "cfg": {
+   "nTiles": [
+    6,
+    6,
+    3
+   ],
+   "nTil": 8,
+   "alpha": 0.3,
+   "gamma": 0.99,
+   "eps0": 0.3,
+   "eps1": 0.02,
+   "semente": 100
+  },
+  "metricas": {
+   "ret": 181.7,
+   "ret_desc": 114.8663993426459,
+   "sucesso": 1.0,
+   "passos": 52.28,
+   "toca": 0.965
+  }
+ },
+ "extra": {
+  "passos": 2000000,
+  "passos_comparacao": 400000,
+  "limiar_aprendeu": 0.5,
+  "sementes": {
+   "a2c_16envs": [
+    200,
+    201,
+    202
+   ],
+   "ppo_8envs": [
+    200,
+    201,
+    202
+   ],
+   "ppo_clip0.3_8envs": [
+    200
+   ]
+  },
+  "cartpole_passos": 100000,
+  "cartpole_sementes": [
+   200,
+   201
+  ],
+  "cartpole_limiar": 475,
+  "erros": []
+ }
+}

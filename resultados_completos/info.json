@@ -1,0 +1,62 @@
+{
+ "rapido": false,
+ "python": "3.12.3",
+ "numpy": "2.5.3",
+ "pandas": "3.0.6",
+ "scipy": "1.18.1",
+ "torch": "2.14.1+cpu",
+ "stable_baselines3": "2.9.2",
+ "gymnasium": "1.4.0",
+ "so": "Linux-6.17.0-1019-aws-x86_64-with-glibc2.39",
+ "cpus": 4,
+ "processos": 4,
+ "orcamento_busca": 200000,
+ "orcamento_final": 400000,
+ "sementes_busca": [
+  0,
+  1,
+  2
+ ],
+ "sementes_final": [
+  100,
+  101,
+  102,
+  103,
+  104
+ ],
+ "criterio": "maior retorno descontado médio (γ = 0,99) na busca; desempate pela taxa de sucesso",
+ "params_ambiente": {
+  "passo": 0.7,
+  "sigma_mov": 0.05,
+  "r_embarque": 0.8,
+  "r_abrigo": 0.9,
+  "r_destrocos": 0.5,
+  "corr_vmax": 0.5,
+  "corr_sigma": 0.05,
+  "corr_media": 0.5,
+  "corr_theta": 0.1,
+  "corr_sigma_i": 0.12,
+  "corr_sigma_0": 0.25,
+  "max_passos": 100,
+  "capacidade": 2,
+  "r_passo": -1.0,
+  "r_destrocos_rec": -10.0,
+  "r_pessoa": 50.0,
+  "r_final": 100.0
+ },
+ "tempos_s": {
+  "linhas_de_base": 1.5,
+  "busca": 4122.9,
+  "final": 1861.7,
+  "total": 5991.2
+ },
+ "v_estrela_t2": 161.92990033618582,
+ "erros": [],
+ "tempo_total_s": 5991.2,
+ "configs_melhores": {
+  "DQN": "dqn_gamma0.95",
+  "PPO": "ppo_clip0.3",
+  "A2C": "a2c_16envs",
+  "SARSA": "sarsa_6x6x3_a0.3"
+ }
+}

@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "Se você usar este software, cite-o como abaixo. / If you use this software, please cite it as below."
+title: "Laboratório de Aprendizado por Reforço: barco de resgate com estados contínuos"
+type: software
+version: 1.0.0
+date-released: 2026-11-02
+year: 2026
+license: MIT
+url: "https://epineto.github.io/rescue-boat-deeprl-unisinos/"
+repository-code: "https://github.com/epineto/rescue-boat-deeprl-unisinos"
+abstract: "Aplicação web estática que acompanha o Trabalho 3 de Aprendizado por Reforço (PPGCA/Unisinos): o barco de resgate do Trabalho 2 reformulado com posição contínua, ruído e correnteza dinâmica; controle manual, políticas de DQN, PPO e A2C (stable-baselines3) executadas em JavaScript, treino do Sarsa semi-gradiente com tile coding no navegador e explorador dos resultados do experimento, com todas as configurações testadas."
+keywords:
+  - reinforcement learning
+  - function approximation
+  - tile coding
+  - DQN
+  - PPO
+  - A2C
+  - Sarsa
+  - Unisinos
+authors:
+  - family-names: "Nascimento Neto"
+    given-names: "Epitácio Vicente do"
+    affiliation: "Programa de Pós-Graduação em Computação Aplicada (PPGCA), Unisinos"
+  - family-names: "Araujo"
+    given-names: "Antonio Clerton Santana de"
+    affiliation: "Programa de Pós-Graduação em Computação Aplicada (PPGCA), Unisinos"

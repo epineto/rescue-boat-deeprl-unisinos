@@ -1,0 +1,12 @@
+hipotese,diferenca,estatistica,p,veredito
+H1: DQN vs PPO (AUC do retorno descontado),96.75138271630003,3.9114414757858973,0.01691997300754823,confirmada
+H1: DQN vs A2C (AUC do retorno descontado),131.78377827140213,17.769054879859755,1.841099055811359e-05,confirmada
+"H2: desvio entre sementes, PPO vs A2C (retorno descontado final)",38.17231252415364,0.37874558093933336,0.5553742313289791,refutada (direção contrária)
+H3: DQN vs tabular (retorno descontado final),1.6782075914921109,2.6641283983028248,0.05614825750679367,inconclusiva (sem diferença significativa)
+H3: DQN vs heuristica (retorno descontado final),1.2525749769545769,1.9884432557841172,0.11765986644683889,inconclusiva (sem diferença significativa)
+H3: PPO vs tabular (retorno descontado final),-144.34363293499408,-5.2804611927661735,0.006168213089069968,confirmada (abaixo da referência)
+H3: PPO vs heuristica (retorno descontado final),-144.7692655495316,-5.296031928085363,0.0061035258865468804,confirmada (abaixo da referência)
+H3: A2C vs tabular (retorno descontado final),-176.72538049769148,-17.21757320716639,6.676661563911409e-05,confirmada (abaixo da referência)
+H3: A2C vs heuristica (retorno descontado final),-177.151013112229,-17.25904071273644,6.613430313349022e-05,confirmada (abaixo da referência)
+H3: SARSA vs tabular (retorno descontado final),-27.0073312634116,-20.458026913916466,3.3713977303610916e-05,confirmada (abaixo da referência)
+H3: SARSA vs heuristica (retorno descontado final),-27.432963877949135,-20.780443201505985,3.168522852862773e-05,confirmada (abaixo da referência)

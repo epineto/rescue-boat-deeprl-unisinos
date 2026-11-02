@@ -1,0 +1,4 @@
+algo,config,n,passos,n_aprenderam,ret_desc,ret_desc_dp,ret_desc_ic95,ret,sucesso,passos_ep,toca_destrocos,tempo_s
+A2C,a2c_16envs,3,2000000,0,-35.673557,24.012118,59.654222,-66.666667,0.0,100.0,0.0,316.666667
+PPO,ppo_8envs,3,2000000,1,26.000173,82.04053,203.816423,27.085,0.315,83.918333,0.286667,1495.133333
+PPO,ppo_clip0.3_8envs,1,2000000,1,125.277976,,,193.865,0.965,50.385,0.0,1473.0

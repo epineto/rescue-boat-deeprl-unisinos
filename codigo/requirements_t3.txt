@@ -1,0 +1,8 @@
+# Versões usadas nos experimentos do Trabalho 3 (Python 3.12, CPU)
+numpy==2.5.3
+pandas==3.0.6
+scipy==1.18.1
+matplotlib==3.11.2
+gymnasium==1.4.0
+torch==2.14.1
+stable-baselines3==2.9.2

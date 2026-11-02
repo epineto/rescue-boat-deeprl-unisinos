@@ -1,0 +1,6 @@
+algo,config,n,ret,ret_min_sem,ret_max_sem,frac_ep_475,tempo_s
+A2C,a2c_16envs,2,500.0,500.0,500.0,1.0,32.95
+A2C,a2c_padrao,2,316.075,132.15,500.0,0.5,221.7
+PPO,ppo_8envs,2,500.0,500.0,500.0,1.0,94.05
+PPO,ppo_clip0.3,2,500.0,500.0,500.0,1.0,181.15
+PPO,ppo_padrao,2,500.0,500.0,500.0,1.0,223.1

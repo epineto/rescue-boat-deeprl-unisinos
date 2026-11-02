@@ -1,0 +1,1942 @@
+{
+ "descricao": "Trajet\u00f3rias de refer\u00eancia do RescueBoatContEnv: a\u00e7\u00f5es fixas + semente \u2192 posi\u00e7\u00e3o, intensidade, recompensa, situa\u00e7\u00e3o das pessoas e flags a cada passo. Gerador: mulberry32 + Box-Muller (ver docstring de barco_continuo.py). Toler\u00e2ncia sugerida na compara\u00e7\u00e3o em JavaScript: 1e-9.",
+ "parametros": {
+  "passo": 0.7,
+  "sigma_mov": 0.05,
+  "r_embarque": 0.8,
+  "r_abrigo": 0.9,
+  "r_destrocos": 0.5,
+  "corr_vmax": 0.5,
+  "corr_sigma": 0.05,
+  "corr_media": 0.5,
+  "corr_theta": 0.1,
+  "corr_sigma_i": 0.12,
+  "corr_sigma_0": 0.25,
+  "max_passos": 100,
+  "capacidade": 2,
+  "r_passo": -1.0,
+  "r_destrocos_rec": -10.0,
+  "r_pessoa": 50.0,
+  "r_final": 100.0
+ },
+ "mapa": [
+  "P..P..",
+  ".#..#P",
+  "~~~~~~",
+  "..xx..",
+  ".#..#.",
+  "..H..."
+ ],
+ "gerador": {
+  "semente": 12345,
+  "primeiros_uniformes": [
+   0.9797282677609473,
+   0.3067522644996643,
+   0.484205421525985,
+   0.817934412509203,
+   0.5094283693470061,
+   0.34747186047025025,
+   0.07375754183158278,
+   0.7663964673411101
+  ],
+  "par_normais_apos_semente": [
+   -0.9747324511950912,
+   2.6166681823254323
+  ]
+ },
+ "trajetorias": [
+  {
+   "nome": "heuristica_resgate_completo",
+   "semente": 123,
+   "intensidade_inicial": 0.6909070295656216,
+   "acoes": [
+    3,
+    3,
+    3,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    2,
+    2,
+    2,
+    2,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    1,
+    1,
+    1,
+    3,
+    3,
+    3,
+    2,
+    2,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    1,
+    1,
+    3,
+    3,
+    3,
+    3
+   ],
+   "passos": [
+    {
+     "x": 1.806831930355208,
+     "y": 5.558072660123477,
+     "intensidade": 0.5709305565902443,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 1.1969070821108958,
+     "y": 5.515058262777606,
+     "intensidade": 0.6774649705979676,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.5658197586779683,
+     "y": 5.511046508601508,
+     "intensidade": 0.6649396813269038,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.5247107926361702,
+     "y": 4.863752521686915,
+     "intensidade": 0.5706146041593466,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.4903561405320759,
+     "y": 4.161981861673755,
+     "intensidade": 0.7121978939680598,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.5013312320720787,
+     "y": 3.471360443077438,
+     "intensidade": 0.5574699747625469,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.4658101610013718,
+     "y": 3.0043580296187926,
+     "intensidade": 0.2858686757032916,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.5745072245675596,
+     "y": 2.4485428808669596,
+     "intensidade": 0.39205987276036863,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.4844564820418835,
+     "y": 1.7668546608129874,
+     "intensidade": 0.543792216095104,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.3859986820757819,
+     "y": 1.0077379735660166,
+     "intensidade": 0.6252569432001656,
+     "recompensa": -1.0,
+     "status": [
+      1,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.34204713942248005,
+     "y": 0.3190124999093037,
+     "intensidade": 0.531433010397184,
+     "recompensa": -1.0,
+     "status": [
+      1,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 1.0137376153414306,
+     "y": 0.3702015375391178,
+     "intensidade": 0.5680602573022779,
+     "recompensa": -1.0,
+     "status": [
+      1,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 1.7805783708141165,
+     "y": 0.3790045359705047,
+     "intensidade": 0.5868178424727856,
+     "recompensa": -1.0,
+     "status": [
+      1,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 2.4521516190795194,
+     "y": 0.46401121264558653,
+     "intensidade": 0.799193903497087,
+     "recompensa": -1.0,
+     "status": [
+      1,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 3.1905516695306764,
+     "y": 0.4125959650997813,
+     "intensidade": 0.7497106408417631,
+     "recompensa": -1.0,
+     "status": [
+      1,
+      1,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 3.214551445990863,
+     "y": 1.1582927652592248,
+     "intensidade": 0.702158927104107,
+     "recompensa": -1.0,
+     "status": [
+      1,
+      1,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 3.2440807492848354,
+     "y": 1.7821025811969013,
+     "intensidade": 0.7900067894926927,
+     "recompensa": -1.0,
+     "status": [
+      1,
+      1,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 3.272083416227498,
+     "y": 2.8845902801716314,
+     "intensidade": 0.795216122630669,
+     "recompensa": -1.0,
+     "status": [
+      1,
+      1,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 4.0208904376412775,
+     "y": 3.333379066665631,
+     "intensidade": 0.7161074187133754,
+     "recompensa": -1.0,
+     "status": [
+      1,
+      1,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 4.65889522007041,
+     "y": 3.332494636881888,
+     "intensidade": 0.6184829177899329,
+     "recompensa": -1.0,
+     "status": [
+      1,
+      1,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 5.417565692750604,
+     "y": 3.3247518010392643,
+     "intensidade": 0.7706454148997554,
+     "recompensa": -1.0,
+     "status": [
+      1,
+      1,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 5.355632232075716,
+     "y": 4.051482259754551,
+     "intensidade": 0.8823988410061595,
+     "recompensa": -1.0,
+     "status": [
+      1,
+      1,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 5.3602075139925125,
+     "y": 4.73030005197548,
+     "intensidade": 0.9943073609799816,
+     "recompensa": -1.0,
+     "status": [
+      1,
+      1,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 5.349839720322489,
+     "y": 5.532481185282954,
+     "intensidade": 0.7798067828215653,
+     "recompensa": -1.0,
+     "status": [
+      1,
+      1,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 4.655778638952712,
+     "y": 5.580974161521976,
+     "intensidade": 0.8435117851755181,
+     "recompensa": -1.0,
+     "status": [
+      1,
+      1,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 3.9764723357604574,
+     "y": 5.581120188975893,
+     "intensidade": 0.8117881241703502,
+     "recompensa": -1.0,
+     "status": [
+      1,
+      1,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 3.261348454751119,
+     "y": 5.582084905421212,
+     "intensidade": 0.7106897843037778,
+     "recompensa": 99.0,
+     "status": [
+      2,
+      2,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 3.9567065110326456,
+     "y": 5.552330696128926,
+     "intensidade": 0.6850501374323208,
+     "recompensa": -1.0,
+     "status": [
+      2,
+      2,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 4.632280453095663,
+     "y": 5.576572705500331,
+     "intensidade": 0.6315229841565032,
+     "recompensa": -1.0,
+     "status": [
+      2,
+      2,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 5.331159183340283,
+     "y": 5.631580613796608,
+     "intensidade": 0.5750698693721549,
+     "recompensa": -1.0,
+     "status": [
+      2,
+      2,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 5.338552550382411,
+     "y": 4.98462983585151,
+     "intensidade": 0.48586478011420287,
+     "recompensa": -1.0,
+     "status": [
+      2,
+      2,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 5.31429480452653,
+     "y": 4.328694232146535,
+     "intensidade": 0.6196798004680847,
+     "recompensa": -1.0,
+     "status": [
+      2,
+      2,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 5.314715523385828,
+     "y": 3.6474595122590716,
+     "intensidade": 0.7347047950565263,
+     "recompensa": -1.0,
+     "status": [
+      2,
+      2,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 5.267052789021583,
+     "y": 3.286290113112941,
+     "intensidade": 0.7971337795755468,
+     "recompensa": -1.0,
+     "status": [
+      2,
+      2,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 5.242478259401236,
+     "y": 2.9565066195593235,
+     "intensidade": 0.7663927253903845,
+     "recompensa": -1.0,
+     "status": [
+      2,
+      2,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 5.255107745251792,
+     "y": 2.67336212969134,
+     "intensidade": 0.7762511702659992,
+     "recompensa": -1.0,
+     "status": [
+      2,
+      2,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 5.31823425680667,
+     "y": 1.9814368558032218,
+     "intensidade": 0.8197506287555709,
+     "recompensa": -1.0,
+     "status": [
+      2,
+      2,
+      1
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 5.33521283581724,
+     "y": 3.017680859509059,
+     "intensidade": 0.7512344249624698,
+     "recompensa": -1.0,
+     "status": [
+      2,
+      2,
+      1
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 5.420786850772781,
+     "y": 3.7848258423717662,
+     "intensidade": 0.38242062233417157,
+     "recompensa": -1.0,
+     "status": [
+      2,
+      2,
+      1
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 5.353339717946503,
+     "y": 4.563210464420471,
+     "intensidade": 0.6337410008073561,
+     "recompensa": -1.0,
+     "status": [
+      2,
+      2,
+      1
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 5.415389158189767,
+     "y": 5.2557180034489175,
+     "intensidade": 0.5967484117425285,
+     "recompensa": -1.0,
+     "status": [
+      2,
+      2,
+      1
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 4.746520937994162,
+     "y": 5.274832354420208,
+     "intensidade": 0.5649562826915823,
+     "recompensa": -1.0,
+     "status": [
+      2,
+      2,
+      1
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 4.066256077624461,
+     "y": 5.2711016806472255,
+     "intensidade": 0.39758870875385166,
+     "recompensa": -1.0,
+     "status": [
+      2,
+      2,
+      1
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 3.424795693980014,
+     "y": 5.3687253537103805,
+     "intensidade": 0.3147665193755062,
+     "recompensa": -1.0,
+     "status": [
+      2,
+      2,
+      1
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 2.7079622982766294,
+     "y": 5.4414161550478335,
+     "intensidade": 0.22159988334219244,
+     "recompensa": 149.0,
+     "status": [
+      2,
+      2,
+      2
+     ],
+     "terminated": true,
+     "truncated": false,
+     "toques": 0
+    }
+   ]
+  },
+  {
+   "nome": "acoes_aleatorias_fixas",
+   "semente": 7,
+   "intensidade_inicial": 0.5354926094553891,
+   "acoes": [
+    3,
+    2,
+    2,
+    3,
+    2,
+    3,
+    3,
+    0,
+    0,
+    1,
+    1,
+    3,
+    3,
+    0,
+    1,
+    3,
+    0,
+    3,
+    0,
+    1,
+    3,
+    1,
+    1,
+    1,
+    2,
+    1,
+    3,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    2,
+    2,
+    1,
+    3,
+    1,
+    0,
+    3,
+    0,
+    3,
+    2,
+    0,
+    0,
+    1,
+    0,
+    0,
+    2,
+    3,
+    1,
+    3,
+    3,
+    3,
+    2,
+    1,
+    2,
+    1,
+    1,
+    1,
+    0,
+    3,
+    0,
+    0,
+    0,
+    3,
+    2,
+    3,
+    0,
+    2,
+    1,
+    1,
+    0,
+    2,
+    3,
+    2,
+    0
+   ],
+   "passos": [
+    {
+     "x": 1.7567873487563532,
+     "y": 5.36971595466246,
+     "intensidade": 0.6134370623770531,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 2.4603315699121775,
+     "y": 5.425630303252227,
+     "intensidade": 0.45096570323674706,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 3.181843340452981,
+     "y": 5.457693229061895,
+     "intensidade": 0.43233949528961135,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 2.4594732662373726,
+     "y": 5.482135760610378,
+     "intensidade": 0.4174555765793689,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 3.2009907925422505,
+     "y": 5.476345623563884,
+     "intensidade": 0.36284249478249914,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 2.521147578030881,
+     "y": 5.50188380360896,
+     "intensidade": 0.44382644656092085,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 1.8258434735310345,
+     "y": 5.439056868133246,
+     "intensidade": 0.4248798969773257,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 1.8258434735310345,
+     "y": 5.439056868133246,
+     "intensidade": 0.3939703519089941,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 1.8258434735310345,
+     "y": 5.439056868133246,
+     "intensidade": 0.46050368859998037,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 1.806534872348148,
+     "y": 5.999999999,
+     "intensidade": 0.48042236600342775,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 1.8089605450003827,
+     "y": 5.999999999,
+     "intensidade": 0.5335481272840754,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 1.1620106706798068,
+     "y": 5.981359325622756,
+     "intensidade": 0.35701665572799685,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.4342552992052235,
+     "y": 5.999999999,
+     "intensidade": 0.4200535974236893,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.38568559521902585,
+     "y": 5.399258368809255,
+     "intensidade": 0.3704620694978358,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.42930549197000345,
+     "y": 5.999999999,
+     "intensidade": 0.297014176011204,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.0,
+     "y": 5.94415313772872,
+     "intensidade": 0.23282678466084905,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.0,
+     "y": 5.239489334825161,
+     "intensidade": 0.14973129168125116,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.0,
+     "y": 5.131301200539682,
+     "intensidade": 0.148484068548435,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.0,
+     "y": 4.391973866335254,
+     "intensidade": 0.19157381364697768,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.0,
+     "y": 5.1451149001956855,
+     "intensidade": 0.16347368355819572,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.0,
+     "y": 5.132996413548931,
+     "intensidade": 0.05978713663016724,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.0,
+     "y": 5.791653208832513,
+     "intensidade": 0.04107851825521458,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.0035753995915794807,
+     "y": 5.999999999,
+     "intensidade": 0.08944437260145674,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.06351198907130237,
+     "y": 5.999999999,
+     "intensidade": 0.14580325789968535,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.706045227965745,
+     "y": 5.961000163672127,
+     "intensidade": 0.17506830774659707,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.7462515885113015,
+     "y": 5.999999999,
+     "intensidade": 0.043935350722596245,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.0800145551276665,
+     "y": 5.938712151268471,
+     "intensidade": 0.08714864685883708,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.025728767011175713,
+     "y": 5.999999999,
+     "intensidade": 0.17158338760475392,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.03909801929350814,
+     "y": 5.999999999,
+     "intensidade": 0.0,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.812250050554424,
+     "y": 5.99550973698038,
+     "intensidade": 0.0,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 1.3878410313844565,
+     "y": 5.999999999,
+     "intensidade": 0.006326610514039432,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 2.1419771352308703,
+     "y": 5.929221033325681,
+     "intensidade": 0.0293595935697304,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 2.78572755160685,
+     "y": 5.9200778745646225,
+     "intensidade": 0.1520710318680183,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 2.03250593709173,
+     "y": 5.927648333131124,
+     "intensidade": 0.1883458004078811,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 1.3629860052734748,
+     "y": 5.932300438275057,
+     "intensidade": 0.17942971998806828,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.795480608936662,
+     "y": 5.984874134817211,
+     "intensidade": 0.25323809230984695,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 1.4889690288291133,
+     "y": 5.926450673792291,
+     "intensidade": 0.36652143492130257,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 2.1673453605010966,
+     "y": 5.840589618148117,
+     "intensidade": 0.3395334458500512,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 2.0911555705056695,
+     "y": 5.999999999,
+     "intensidade": 0.5044014815204486,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 1.4012931556982162,
+     "y": 5.939640527758884,
+     "intensidade": 0.5529649537056222,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 1.4450430496949371,
+     "y": 5.999999999,
+     "intensidade": 0.6360755983438764,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 1.4862605698942692,
+     "y": 5.277450401535811,
+     "intensidade": 0.6923006046005125,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.8137808392757884,
+     "y": 5.227619021539343,
+     "intensidade": 0.6536427433751345,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.7554819973348901,
+     "y": 4.552277523246775,
+     "intensidade": 0.6131145561311044,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.08658992298091525,
+     "y": 4.524569730005343,
+     "intensidade": 0.5881030744973236,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.6907384951025292,
+     "y": 4.527198592404193,
+     "intensidade": 0.4575921975129554,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.5809045776089153,
+     "y": 3.791011281137165,
+     "intensidade": 0.6115205293922344,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.5214265291519369,
+     "y": 3.139712600434252,
+     "intensidade": 0.47095425320505685,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.5075851422472982,
+     "y": 3.8869299951191696,
+     "intensidade": 0.4260865387295656,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.5867448866733708,
+     "y": 3.1690422685195925,
+     "intensidade": 0.5381567004247676,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.5832858674422782,
+     "y": 2.7440966462634564,
+     "intensidade": 0.26666876724332855,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 1.3746597139633416,
+     "y": 2.891156201900874,
+     "intensidade": 0.2785568785999634,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.6350920611999543,
+     "y": 3.009385598142987,
+     "intensidade": 0.18429081669562886,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.5748772134287123,
+     "y": 3.6501243883093255,
+     "intensidade": 0.082445352882629,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.0,
+     "y": 3.716640507581221,
+     "intensidade": 0.14893094510096147,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.0,
+     "y": 3.6896056808575963,
+     "intensidade": 0.1350751457102917,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.0,
+     "y": 3.648655163697585,
+     "intensidade": 0.41522928751973565,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.6946757738811117,
+     "y": 3.6711985603971473,
+     "intensidade": 0.5149260432067925,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.7631636683433369,
+     "y": 4.2854528124179065,
+     "intensidade": 0.4328171809727051,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.7631636683433369,
+     "y": 4.2854528124179065,
+     "intensidade": 0.19486319364568772,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.7185041043003089,
+     "y": 5.062580150098595,
+     "intensidade": 0.1754620126818423,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.8146721263179314,
+     "y": 5.7641972663327925,
+     "intensidade": 0.13526888431140577,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.8350796480394725,
+     "y": 5.999999999,
+     "intensidade": 0.43384214520635145,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.8299829711794411,
+     "y": 5.366509669219728,
+     "intensidade": 0.23106163221040832,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.11373398382013916,
+     "y": 5.372168472282283,
+     "intensidade": 0.4235128162813092,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.09821928237192494,
+     "y": 4.686518314367042,
+     "intensidade": 0.23363894649175426,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.05838748248269838,
+     "y": 3.9871341722004363,
+     "intensidade": 0.26645499949878565,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.006840642643746654,
+     "y": 3.2724154414517543,
+     "intensidade": 0.217739580574426,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.0,
+     "y": 3.232720354548163,
+     "intensidade": 0.29815291941166144,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.6935103618425165,
+     "y": 3.2016937352925217,
+     "intensidade": 0.5669319534831473,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.0,
+     "y": 3.1263151381907526,
+     "intensidade": 0.6196257453858272,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.023693418113016618,
+     "y": 2.730648191726268,
+     "intensidade": 0.79197185134232,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.7782176398733969,
+     "y": 3.098704666402148,
+     "intensidade": 0.8271979596543344,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.8237323333105034,
+     "y": 3.872737631115295,
+     "intensidade": 0.9676390390398575,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.8341212768859706,
+     "y": 4.608189887263875,
+     "intensidade": 0.9684393779956962,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.8462544388438318,
+     "y": 3.9034100578707394,
+     "intensidade": 0.9491771830785058,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 1.528019318216522,
+     "y": 3.8405332590536863,
+     "intensidade": 0.8959375000611566,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 0.81176635953851,
+     "y": 3.8294473961955253,
+     "intensidade": 0.6977825160702132,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 1.494571300879871,
+     "y": 3.8213329610263047,
+     "intensidade": 0.7176458437029339,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    },
+    {
+     "x": 1.4785026284628315,
+     "y": 3.2326788704943494,
+     "intensidade": 0.7640423576827675,
+     "recompensa": -1.0,
+     "status": [
+      0,
+      0,
+      0
+     ],
+     "terminated": false,
+     "truncated": false,
+     "toques": 0
+    }
+   ]
+  }
+ ]
+}

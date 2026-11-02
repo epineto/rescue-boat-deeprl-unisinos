@@ -1,0 +1,49 @@
+{
+ "DQN": {
+  "config": "dqn_gamma0.95",
+  "hp": {
+   "learning_rate": 0.001,
+   "buffer_size": 100000,
+   "learning_starts": 1000,
+   "exploration_fraction": 0.4,
+   "target_update_interval": 500,
+   "batch_size": 64,
+   "escala_recompensa": 0.1,
+   "gamma": 0.95
+  }
+ },
+ "PPO": {
+  "config": "ppo_clip0.3",
+  "hp": {
+   "learning_rate": 0.001,
+   "n_steps": 512,
+   "batch_size": 128,
+   "ent_coef": 0.05,
+   "escala_recompensa": 0.1,
+   "clip_range": 0.3
+  }
+ },
+ "A2C": {
+  "config": "a2c_16envs",
+  "hp": {
+   "n_envs": 16,
+   "n_steps": 16,
+   "learning_rate": 0.001,
+   "ent_coef": 0.05,
+   "gae_lambda": 0.95,
+   "escala_recompensa": 0.1
+  }
+ },
+ "SARSA": {
+  "config": "sarsa_6x6x3_a0.3",
+  "hp": {
+   "n_tiles": [
+    6,
+    6,
+    3
+   ],
+   "n_til": 8,
+   "alpha": 0.3
+  }
+ }
+}

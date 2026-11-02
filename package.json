@@ -1,0 +1,16 @@
+{
+  "name": "rescue-boat-deeprl-unisinos",
+  "version": "1.0.0",
+  "description": "Laboratório de Aprendizado por Reforço: barco de resgate com estados contínuos (DQN, PPO, A2C e Sarsa com tile coding) no navegador / Reinforcement Learning lab: continuous rescue boat in the browser",
+  "type": "module",
+  "license": "MIT",
+  "author": "Epitácio Vicente do Nascimento Neto",
+  "repository": { "type": "git", "url": "git+https://github.com/epineto/rescue-boat-deeprl-unisinos.git" },
+  "homepage": "https://epineto.github.io/rescue-boat-deeprl-unisinos/",
+  "private": true,
+  "scripts": {
+    "test": "node --test tests/",
+    "serve": "python3 -m http.server 8000"
+  },
+  "engines": { "node": ">=18" }
+}
