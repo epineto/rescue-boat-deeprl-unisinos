@@ -259,7 +259,7 @@ export default {
   'sobre.testes': 'O que os testes verificam',
   'sobre.t1': 'Ambiente em JavaScript contra uma trajetória gerada pelo Python (posição, intensidade, recompensa e situação, tolerância de 1e-9) e contra as linhas de base de 500 episódios.',
   'sobre.t2': 'Inferência das redes contra o PyTorch, com observações fixas; tile coding e a regra do Sarsa contra o Python.',
-  'sobre.t3': 'Dicionários PT e EN completos, voz impessoal e carga dos dados exportados.',
+  'sobre.t3': 'Dicionários PT e EN completos e carga dos dados exportados.',
   'sobre.aulas': 'Aulas relacionadas', 'sobre.aulas_aula': 'Aula', 'sobre.aulas_onde': 'Conteúdo e onde aparece',
   'sobre.a6': 'MDP, retorno, política e valor: o problema em Início e Ambiente.',
   'sobre.a7': 'Iteração de Valor: a política ótima do Trabalho 2, usada como linha de base tabular discretizada.',
