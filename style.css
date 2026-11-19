@@ -123,7 +123,7 @@ figcaption { font-size: .85rem; font-weight: 700; color: var(--titulo); margin-b
 
 /* hero */
 .hero { background: linear-gradient(135deg, var(--azul) 0%, #2B3590 100%); color: #fff; border-radius: 12px; padding: 1.4rem 1.5rem 1.2rem; margin-bottom: 1rem; box-shadow: var(--sombra); }
-.hero h2 { color: #fff; font-size: 1.6rem; margin: .8rem 0 .6rem; max-width: 32ch; }
+.hero h2 { color: #fff; font-size: 1.6rem; margin: .8rem 0 .6rem; max-width: none; text-wrap: balance; }
 .hero-logo { height: 48px; width: auto; background: #fff; border-radius: 8px; padding: 5px 9px; display: block; }
 .hero a { color: #fff; }
 .problema { margin: 0; padding-left: 1.2rem; max-width: 84ch; }
